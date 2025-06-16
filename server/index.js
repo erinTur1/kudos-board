@@ -117,8 +117,9 @@ app.get('/boards/:boardId', (req, res) => {
 });
 
 //create board
+app.post('/boards', (req, res) => {
 
-//create card
+});
 
 //delete board by id
 app.delete('/boards/:boardId', (req, res) => {
@@ -133,9 +134,19 @@ app.delete('/boards/:boardId', (req, res) => {
     }
 })
 
+//create card
+app.post('/boards/:boardId/cards', (req, res) => {
+
+});
+
+//update card upvotes
+app.put('/boards/:boardId/cards/:cardId', (req, res) => {
+     
+});
+
 //delete card by id
 //BETTER WAY TO DO THIS?
-app.delete('/boards/:boardId/:cardId', (req, res) => {
+app.delete('/boards/:boardId/cards/:cardId', (req, res) => {
     const boardId = parseInt(req.params.boardId);
     const cardId = parseInt(req.params.cardId);
     //first get board by id
@@ -152,10 +163,14 @@ app.delete('/boards/:boardId/:cardId', (req, res) => {
     }
 })
 
-//upvote card
 
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`)
 })
 
+//query params for search and filter
+
+//good practive to send back newly created object
+
+//should do null checking

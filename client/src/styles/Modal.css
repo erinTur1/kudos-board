@@ -1,0 +1,61 @@
+.modal-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100vw;
+    height:100vh;
+    z-index: 2;
+    
+}
+
+.modal-popup {
+    display: block;
+    z-index: 2;
+    min-width: 80%;
+    max-height: 70%;
+    margin-bottom: 20px;
+    /*Below is to center the modal relative to the browser window*/
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translate(-40%, -50%);    
+}
+
+.modal-popup * {
+    opacity: 1;
+    padding: 6px;
+}
+
+.modal-content img {
+    max-width: 30%;
+    max-height: 30%;
+    box-shadow: 10px 10px 10px rgb(114, 112, 112);
+}
+
+.modal-content button {
+    background-color: #768198;
+    width: 7vw;
+    height: 4vh;
+    margin-top: 7px;
+}
+
+.modal-content {
+    background-color: white;
+    max-width: 70%;
+    max-height: 70%;
+    border-style: outset;
+    border-width: 10px;
+    overflow: scroll;
+    box-shadow: 10px 10px 10px rgb(114, 112, 112);
+}
+
+.modal-content p {
+    margin: 0px;
+}
+
+.modal-content-visuals {
+    display: flex;
+    flex-direction: inline;
+    justify-content: space-around;
+}

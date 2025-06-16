@@ -3,6 +3,8 @@ import HomePage from './pages/HomePage'
 import CardsPage from './pages/CardsPage'
 import './App.css'
 
+//fetch data here and pass through routes
+//search can just be using data
 function App() {
   return (
     <HashRouter>

@@ -1,12 +1,12 @@
 import { useNavigate } from  "react-router";
 import "../styles/Board.css"
-const Board = ({boardData, deleteBoard}) => {
+const Board = ({boardData, handleDeleteBoard}) => {
 
 
     const navigate = useNavigate();
    
     const handleDelete = () => {
-        deleteBoard(boardData.id);
+        handleDeleteBoard(boardData.id);
     }
 
     return <div className="board">
