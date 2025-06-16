@@ -1,0 +1,24 @@
+.board {
+    background-color: #9EBC8A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 12%;
+    padding: 1%;
+}
+
+.board h2, p {
+    margin: 5px;
+}
+.board img {
+    width: 100%;
+}
+
+.board button {
+    padding: 7px;
+    margin-right: 4px;
+}
+
+.board button:hover {
+    padding: 10px;
+}

@@ -1,0 +1,20 @@
+.search-form {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.search-form input {
+    width: 60px; 
+    height: 40px;
+    margin-right: 5px;
+}
+
+input[type="submit"]:hover {
+    background-color: #D2D0A0;
+}
+
+.search-form #text-input {
+    width: 250px; 
+    height: 40px;
+}
+
