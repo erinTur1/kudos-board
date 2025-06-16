@@ -112,6 +112,17 @@ app.get('/boards/:boardId', (req, res) => {
 //create card
 
 //delete board by id
+app.delete('/boards/:boardId', (req, res) => {
+    const { boardId } = req.params;
+    const initialLength = boards.length;
+    boards = boards.filter(board => board.id !== parseInt(boardId));
+
+    if (boards.length < initialLength) {
+        res.status(204).send();
+    } else {
+        res.status(404).send('Board not found');
+    }
+})
 
 //delete card by id
 

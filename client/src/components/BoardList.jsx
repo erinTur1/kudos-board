@@ -19,6 +19,23 @@ const BoardList = () => {
             .catch(error => console.error('Error fetching boards:', error))
     };
 
+    const deleteBoardById = (boardId) => {
+        fetch(`http://localhost:3000/boards/${boardId}`, {
+            method: 'DELETE',
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error ('Failed to delete')
+            } else {
+                console.log("Item deleted successfully");
+                //Is there a better way to reflect the deletion on frontend?:
+                setBoards(boards.filter(board => board.id !== parseInt(boardId)));
+            }
+        })
+        .catch(error => console.error(error))
+
+    };
+
 
     //will also need delete callback function
 
@@ -28,6 +45,7 @@ const BoardList = () => {
                 return <Board 
                 key={board.id}
                 boardData={board}
+                deleteBoard={deleteBoardById}
                 />
             })
         }
