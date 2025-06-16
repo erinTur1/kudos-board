@@ -1,9 +1,10 @@
 import "../styles/Card.css";
 
-const Card = ({cardData}) => {
+const Card = ({cardData, deleteCard}) => {
 
     const handleDelete = () => {
-
+        console.log("here?:",cardData.id);
+        deleteCard(cardData.id);
     }
 
     const handleUpVote = () => {

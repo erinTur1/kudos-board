@@ -25,9 +25,9 @@ const BoardList = () => {
         })
         .then((response) => {
             if (!response.ok) {
-                throw new Error ('Failed to delete')
+                throw new Error ('Failed to delete board')
             } else {
-                console.log("Item deleted successfully");
+                console.log("Board deleted successfully");
                 //Is there a better way to reflect the deletion on frontend?:
                 setBoards(boards.filter(board => board.id !== parseInt(boardId)));
             }

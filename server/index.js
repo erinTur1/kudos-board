@@ -11,18 +11,21 @@ let boards = [
         "boardImg": "../assets/movie-img-placeholder.png",
         "cards": [
             {
+                "id": 0,
                 "title": "title1",
                 "message": "code1",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
                 "numUpVotes": 3
             },
             {
+                "id": 1,
                 "title": "title2",
                 "message": "code2",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
                 "numUpVotes": 2
             },
             {
+                "id": 2,
                 "title": "title3",
                 "message": "code3",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
@@ -38,18 +41,21 @@ let boards = [
         "boardImg": "../assets/movie-img-placeholder.png",
         "cards": [
             {
+                "id": 0,
                 "title": "title4",
                 "message": "exercise1",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
                 "numUpVotes": 3
             },
             {
+                "id": 1,
                 "title": "title5",
                 "message": "exercise2",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
                 "numUpVotes": 2
             },
             {
+                "id": 2,
                 "title": "title6",
                 "message": "exercise3",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
@@ -65,18 +71,21 @@ let boards = [
         "boardImg": "../assets/movie-img-placeholder.png",
         "cards": [
             {
+                "id": 0,
                 "title": "title7",
                 "message": "fun1",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
                 "numUpVotes": 3
             },
             {
+                "id": 1,
                 "title": "title8",
                 "message": "fun2",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
                 "numUpVotes": 2
             },
             {
+                "id": 2,
                 "title": "title9",
                 "message": "fun3",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
@@ -125,6 +134,23 @@ app.delete('/boards/:boardId', (req, res) => {
 })
 
 //delete card by id
+//BETTER WAY TO DO THIS?
+app.delete('/boards/:boardId/:cardId', (req, res) => {
+    const boardId = parseInt(req.params.boardId);
+    const cardId = parseInt(req.params.cardId);
+    //first get board by id
+    const board = boards.find(board => board.id === boardId);
+    //get initial number of the cards in this board
+    const initialLength = board.cards.length;
+    board.cards = board.cards.filter(card => card.id !== parseInt(cardId));
+    
+
+    if (board.cards.length < initialLength) {
+        res.status(204).send();
+    } else {
+        res.status(404).send('Card not found');
+    }
+})
 
 //upvote card
 
