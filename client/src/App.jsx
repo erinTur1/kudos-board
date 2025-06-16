@@ -8,7 +8,7 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<HomePage />}/>
-        <Route path="/cards/:id" element={<CardsPage />}/>
+        <Route path="/boards/:id" element={<CardsPage />}/>
       </Routes>
     </HashRouter>
   )

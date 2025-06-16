@@ -15,7 +15,7 @@ const Board = ({boardData}) => {
         <p>{boardData.description}</p>
         <div>
             <button onClick={() => {
-                navigate(`/cards/${boardData.id}`)
+                navigate(`/boards/${boardData.id}`, { state: {boardName: `${boardData.title}`}})
             }}>View Board</button>
             <button onClick={handleDelete}>Delete Board</button>
         </div>
