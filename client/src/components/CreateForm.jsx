@@ -1,22 +1,26 @@
 import { useState } from 'react';
 import Modal from "./Modal";
 
-const CreateForm = () => {
+const CreateForm = ({ appendNewBoard }) => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    const handleCreateBoard = () => {
+    const openModal = () => {
         //show modal
         setIsModalVisible(true);
     }
 
-    //pass hideModal function to Modal?
-    
+    const closeModal = () => {
+        setIsModalVisible(false);
+    }
 
     return (
         <>
-            <button onClick={handleCreateBoard}>Create a New Board</button>
-            {isModalVisible && <Modal />}
+            <button onClick={openModal}>Create a New Board</button>
+            {isModalVisible && <Modal closeModal={closeModal} appendNewBoard={(newBoard) => {
+                setIsModalVisible(false);
+                appendNewBoard(newBoard);
+            }}/>}
         </>
 
     )

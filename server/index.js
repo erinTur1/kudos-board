@@ -7,7 +7,9 @@ let boards = [
     {
         "id": 0,
         "title": "study inspo",
-        "description": "get inspo to study",
+        //make enum?
+        "category": "Celebration",
+        "author": "erin",
         "boardImg": "../assets/movie-img-placeholder.png",
         "cards": [
             {
@@ -37,7 +39,8 @@ let boards = [
     {
         "id": 1,
         "title": "workout inspo",
-        "description": "get inspo to workout",
+        "category": "Celebration",
+        "author": "erin",
         "boardImg": "../assets/movie-img-placeholder.png",
         "cards": [
             {
@@ -67,7 +70,8 @@ let boards = [
     {
         "id": 2,
         "title": "fun inspo",
-        "description": "get inspo to have fun",
+        "category": "Celebration",
+        "author": "erin",
         "boardImg": "../assets/movie-img-placeholder.png",
         "cards": [
             {
@@ -118,7 +122,15 @@ app.get('/boards/:boardId', (req, res) => {
 
 //create board
 app.post('/boards', (req, res) => {
+    const receivedBoardData = req.body;
+    const newBoard = {
+        id: boards.length,
+        ...receivedBoardData
+    };
 
+    boards.push(newBoard);
+
+    res.status(201).send(newBoard);
 });
 
 //delete board by id

@@ -3,7 +3,7 @@ import "../styles/Card.css";
 const Card = ({cardData, handleDeleteCard}) => {
 
     //QUESTION: should I have a state variable here with number of updates and only when the user exits the page, it does a fetch call and 
-    //updates the total num of upvotes. - or should i just do a fetch call for each upvote?
+    //updates the total num of upvotes. - or should i just do a fetch call for each upvote
 
     const handleDelete = () => {
         handleDeleteCard(cardData.id);

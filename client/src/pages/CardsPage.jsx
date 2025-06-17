@@ -45,7 +45,7 @@ const CardsPage = () => {
     }
 
     const updateCardVotes = (cardId) => {
-        
+
     }
 
     return (

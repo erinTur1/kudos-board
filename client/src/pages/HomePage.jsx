@@ -39,12 +39,16 @@ const HomePage = () => {
 
     };
 
+    const appendNewBoard = (newBoard) => {
+        setBoards([...boards, newBoard]);
+    }
+
 
     return (
         <div id="home-page">
             <Header />
             <SearchForm />
-            <CreateForm />
+            <CreateForm appendNewBoard={appendNewBoard}/>
             <BoardList boards={boards} deleteBoardById={deleteBoardById}/>
             <Footer />
         </div>
