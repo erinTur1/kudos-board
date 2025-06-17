@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Modal from "./Modal";
+import "../styles/CreateForm.css"
 
 const CreateForm = ({ appendNewBoard }) => {
 
@@ -16,7 +17,7 @@ const CreateForm = ({ appendNewBoard }) => {
 
     return (
         <>
-            <button onClick={openModal}>Create a New Board</button>
+            <button className="create-new-btn" onClick={openModal}>Create a New Board</button>
             {isModalVisible && <Modal closeModal={closeModal} appendNewBoard={(newBoard) => {
                 setIsModalVisible(false);
                 appendNewBoard(newBoard);

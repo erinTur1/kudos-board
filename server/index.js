@@ -8,7 +8,7 @@ let boards = [
         "id": 0,
         "title": "study inspo",
         //make enum?
-        "category": "Celebration",
+        "category": "Inspiration",
         "author": "erin",
         "boardImg": "../assets/movie-img-placeholder.png",
         "cards": [
@@ -180,9 +180,3 @@ app.delete('/boards/:boardId/cards/:cardId', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`)
 })
-
-//query params for search and filter
-
-//good practive to send back newly created object
-
-//should do null checking

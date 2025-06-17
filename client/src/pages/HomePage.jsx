@@ -4,12 +4,14 @@ import SearchForm from "../components/SearchForm";
 import BoardList from "../components/BoardList";
 import Footer from "../components/Footer";
 import CreateForm from "../components/CreateForm";
+import FilterOptions from '../components/FilterOptions';
+import { filterByRecent, filterByCategory } from "../utils/utils";
 
 const HomePage = () => {
 
     //boards state var and setBoards with the fetch call
     const [boards, setBoards] = useState([]);
-
+    const [searchRequest, setSearchRequest] = useState('');
     //useEffect fetch all api boards 
     useEffect(() => {
         fetchBoards();
@@ -18,7 +20,7 @@ const HomePage = () => {
     const fetchBoards = () => {
         fetch('http://localhost:3000/boards')
             .then(response => response.json())
-            .then(data => setBoards(data))
+            .then(data => {setBoards(data)})
             .catch(error => console.error('Error fetching boards:', error))
     };
 
@@ -43,11 +45,37 @@ const HomePage = () => {
         setBoards([...boards, newBoard]);
     }
 
+    const filterBoards = (filter) => {
+        //ENUMS NEEDED
+        if (filter === "recent") {
+            filterByRecent(); //make api call instead???
+        } else if (filter === "all") {
+            fetchBoards(); //BETTER OPTION THAN REFETCHING?
+        } else { 
+            setBoards(filterByCategory(boards, filter));
+        }
+    }
+
+    const handleSearchChange = (newSearchRequest) => {
+        setSearchRequest(newSearchRequest); //might be able to move this state to SearchForm
+        const newBoards = boards.filter(board => 
+            board.title.includes(newSearchRequest)
+        );
+        setBoards(newBoards);
+    }
+
+    const handleSearchSubmit = (newSearchRequest) => {
+
+    }
 
     return (
         <div id="home-page">
             <Header />
-            <SearchForm />
+            <SearchForm 
+            searchRequest={searchRequest} 
+            onSearchChange={handleSearchChange} 
+            onSubmitSearch={handleSearchSubmit}/>
+            <FilterOptions filterBoards={filterBoards}/>
             <CreateForm appendNewBoard={appendNewBoard}/>
             <BoardList boards={boards} deleteBoardById={deleteBoardById}/>
             <Footer />
