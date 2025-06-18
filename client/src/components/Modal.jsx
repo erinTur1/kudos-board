@@ -17,7 +17,7 @@ const Modal = ({ closeModal, appendNewBoard }) => {
                 // "time_created": Date.now(),
             }),
         })
-        .then(async(response) => { //QUESTION:is putting async like this ok?
+        .then(async(response) => { 
             if (!response.ok) {
                 throw new Error ('Failed to create board')
             } else {

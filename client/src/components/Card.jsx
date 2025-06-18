@@ -13,18 +13,12 @@ const Card = ({cardData, boardId, handleDeleteCard, handleUpVoteCard}) => {
     }
 
     const handleUpVote = () => {
-        // handleUpVoteCard(cardData.id);
-
         //put request
         fetch(`http://localhost:3000/boards/${boardId}/cards/${cardData.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                ...cardData,
-                numVotes: numUpVotes + 1,
-            }),
         })
         .then((response) => { //QUESTION:is putting async like this ok?
             if (!response.ok) {
@@ -42,7 +36,7 @@ const Card = ({cardData, boardId, handleDeleteCard, handleUpVoteCard}) => {
     return <div className="card">
         <h2>{cardData.title}</h2>
         <p>{cardData.message}</p>
-        <img src={cardData.gif}/>
+        <img src={cardData.gif_url}/>
         <div>
             <button onClick={handleUpVote}>Upvote: {numUpVotes}</button>
             <button onClick={handleDelete}>Delete</button>
