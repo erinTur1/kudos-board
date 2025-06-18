@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Header from "../components/Header";
 import SearchForm from "../components/SearchForm";
 import BoardList from "../components/BoardList";
@@ -10,6 +10,7 @@ import { filterByRecent, filterByCategory } from "../utils/utils";
 const HomePage = () => {
 
     //boards state var and setBoards with the fetch call
+    const defaultBoards = useRef([]);
     const [boards, setBoards] = useState([]);
     const [searchRequest, setSearchRequest] = useState('');
     //useEffect fetch all api boards 
@@ -23,6 +24,7 @@ const HomePage = () => {
             .then(response => response.json())
             .then(data => {
                 setBoards(data);
+                defaultBoards.current = data;
             })
             .catch(error => console.error('Error fetching boards:', error))
     };
@@ -38,6 +40,7 @@ const HomePage = () => {
                 console.log("Board deleted successfully");
                 //Is there a better way to reflect the deletion on frontend?:
                 setBoards(boards.filter(board => board.id !== parseInt(boardId)));
+                defaultBoards.current = boards.filter(board => board.id !== parseInt(boardId));
             }
         })
         .catch(error => console.error(error))
@@ -46,16 +49,19 @@ const HomePage = () => {
 
     const appendNewBoard = (newBoard) => {
         setBoards([...boards, newBoard]);
+        defaultBoards.current = [...boards, newBoard];
     }
 
     const filterBoards = (filter) => {
         //ENUMS NEEDED
         if (filter === "recent") {
-            filterByRecent(); //make api call instead???
+            const updatedBoards = filterByRecent(defaultBoards.current);
+            setBoards(updatedBoards);
         } else if (filter === "all") {
             fetchBoards(); //BETTER OPTION THAN REFETCHING?
         } else { 
-            setBoards(filterByCategory(boards, filter));
+            const updatedBoards = filterByCategory(defaultBoards.current, filter);
+            setBoards(updatedBoards);
         }
     }
 

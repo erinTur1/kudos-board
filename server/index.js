@@ -11,89 +11,220 @@ let boards = [
         "category": "Inspiration",
         "author": "erin",
         "boardImg": "../assets/movie-img-placeholder.png",
+        "time_created": 1750214316708,
         "cards": [
             {
                 "id": 0,
                 "title": "title1",
                 "message": "code1",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numVotes": 3
+                "numVotes": 3,
             },
             {
                 "id": 1,
                 "title": "title2",
                 "message": "code2",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numVotes": 2
+                "numVotes": 2,
             },
             {
                 "id": 2,
                 "title": "title3",
                 "message": "code3",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numVotes": 30
+                "numVotes": 30,
             },
             
         ]
     },
     {
         "id": 1,
-        "title": "workout inspo",
+        "title": "NEWworkout inspo",
         "category": "Celebration",
         "author": "erin",
         "boardImg": "../assets/movie-img-placeholder.png",
+        "time_created": 1750214317708,
         "cards": [
             {
                 "id": 0,
                 "title": "title4",
                 "message": "exercise1",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numVotes": 3
+                "numVotes": 3,
             },
             {
                 "id": 1,
                 "title": "title5",
                 "message": "exercise2",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numVotes": 2
+                "numVotes": 2,
             },
             {
                 "id": 2,
                 "title": "title6",
                 "message": "exercise3",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numVotes": 30
+                "numVotes": 30,
             },
             
         ]
     },
     {
         "id": 2,
+        "title": "workout inspo",
+        "category": "Celebration",
+        "author": "erin",
+        "boardImg": "../assets/movie-img-placeholder.png",
+        "time_created": 1750214316708,
+        "cards": [
+            {
+                "id": 0,
+                "title": "title4",
+                "message": "exercise1",
+                "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
+                "numVotes": 3,
+            },
+            {
+                "id": 1,
+                "title": "title5",
+                "message": "exercise2",
+                "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
+                "numVotes": 2,
+            },
+            {
+                "id": 2,
+                "title": "title6",
+                "message": "exercise3",
+                "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
+                "numVotes": 30,
+            },
+            
+        ]
+    },
+    {
+        "id": 3,
+        "title": "NEWworkout inspo",
+        "category": "Celebration",
+        "author": "erin",
+        "boardImg": "../assets/movie-img-placeholder.png",
+        "time_created": 1750214317708,
+        "cards": [
+            {
+                "id": 0,
+                "title": "title4",
+                "message": "exercise1",
+                "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
+                "numVotes": 3,
+            },
+            {
+                "id": 1,
+                "title": "title5",
+                "message": "exercise2",
+                "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
+                "numVotes": 2,
+            },
+            {
+                "id": 2,
+                "title": "title6",
+                "message": "exercise3",
+                "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
+                "numVotes": 30,
+            },
+            
+        ]
+    },
+    {
+        "id": 4,
+        "title": "NEWworkout inspo",
+        "category": "Celebration",
+        "author": "erin",
+        "boardImg": "../assets/movie-img-placeholder.png",
+        "time_created": 1750214317708,
+        "cards": [
+            {
+                "id": 0,
+                "title": "title4",
+                "message": "exercise1",
+                "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
+                "numVotes": 3,
+            },
+            {
+                "id": 1,
+                "title": "title5",
+                "message": "exercise2",
+                "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
+                "numVotes": 2,
+            },
+            {
+                "id": 2,
+                "title": "title6",
+                "message": "exercise3",
+                "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
+                "numVotes": 30,
+            },
+            
+        ]
+    },
+    {
+        "id": 5,
         "title": "fun inspo",
         "category": "Celebration",
         "author": "erin",
         "boardImg": "../assets/movie-img-placeholder.png",
+        "time_created": 1750214316708,
         "cards": [
             {
                 "id": 0,
                 "title": "title7",
                 "message": "fun1",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numVotes": 3
+                "numVotes": 3,
             },
             {
                 "id": 1,
                 "title": "title8",
                 "message": "fun2",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numVotes": 2
+                "numVotes": 2,
             },
             {
                 "id": 2,
                 "title": "title9",
                 "message": "fun3",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numVotes": 30
+                "numVotes": 30,
+            },
+            
+        ]
+    },
+    {
+        "id": 6,
+        "title": "NEWworkout inspo",
+        "category": "Celebration",
+        "author": "erin",
+        "boardImg": "../assets/movie-img-placeholder.png",
+        "time_created": 1750214317708,
+        "cards": [
+            {
+                "id": 0,
+                "title": "title4",
+                "message": "exercise1",
+                "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
+                "numVotes": 3,
+            },
+            {
+                "id": 1,
+                "title": "title5",
+                "message": "exercise2",
+                "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
+                "numVotes": 2,
+            },
+            {
+                "id": 2,
+                "title": "title6",
+                "message": "exercise3",
+                "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
+                "numVotes": 30,
             },
             
         ]
@@ -153,7 +284,7 @@ app.post('/boards/:boardId/cards', (req, res) => {
     const board = boards.find(board => board.id === boardId);
     const newCard = {
         id: board.cards.length,
-        numUpVotes: 0,
+        numVotes: 0,
         ...receivedCardData
     };
 
