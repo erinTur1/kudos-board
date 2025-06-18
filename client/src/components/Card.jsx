@@ -42,7 +42,7 @@ const Card = ({cardData, boardId, handleDeleteCard, handleUpVoteCard}) => {
     return <div className="card">
         <h2>{cardData.title}</h2>
         <p>{cardData.message}</p>
-        <p>Gif link: {cardData.gif}</p> 
+        <img src={cardData.gif}/>
         <div>
             <button onClick={handleUpVote}>Upvote: {numUpVotes}</button>
             <button onClick={handleDelete}>Delete</button>

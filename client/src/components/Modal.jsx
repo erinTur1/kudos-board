@@ -42,7 +42,7 @@ const Modal = ({ closeModal, appendNewBoard }) => {
     return <div className="modal-overlay"> 
         <div className="modal-popup">       
             <div className="modal-content">
-                <button onClick={closeModal}>X</button>
+                <button className="close-btn" onClick={closeModal}>X</button>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="titleInput">Title:</label><br />
                     <input required type="text" id="title-input" name="title"></input><br />
