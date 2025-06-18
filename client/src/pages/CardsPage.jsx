@@ -51,6 +51,8 @@ const CardsPage = () => {
     }
 
     const appendNewCard = (newCard) => {
+        console.log("Here1: ", cards);
+        console.log("Here2: ", newCard);
         setCards([...cards, newCard]);
     }
 

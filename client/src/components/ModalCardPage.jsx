@@ -54,7 +54,7 @@ const ModalCardPage = ({ boardId, closeModal, appendNewCard }) => {
 
     const handleGifSearch = async (event) => {
         event.preventDefault();
-        fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${gifQuery}&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips`)
+        fetch(`https://api.giphy.com/v1/gifs/search?api_key=${import.meta.env.VITE_API_KEY}&q=${gifQuery}&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips`)
         .then(async(response) => { 
             if (!response.ok) {
                 throw new Error ('Failed to search gifs')
