@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Modal from "./Modal";
+import ModalCardPage from "./ModalCardPage";
 import "../styles/CreateForm.css"
 
-const CreateForm = ({ appendNewBoard }) => {
+const CreateCardForm = ({ boardId, appendNewCard }) => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -16,14 +16,14 @@ const CreateForm = ({ appendNewBoard }) => {
 
     return (
         <>
-            <button className="create-new-btn" onClick={openModal}>Create a New Board</button>
-            {isModalVisible && <Modal closeModal={closeModal} appendNewBoard={(newBoard) => {
+            <button className="create-new-btn" onClick={openModal}>Create a New Card</button>
+            {isModalVisible && <ModalCardPage boardId={boardId} closeModal={closeModal} appendNewCard={(newCard) => {
                 setIsModalVisible(false);
-                appendNewBoard(newBoard);
+                appendNewCard(newCard);
             }}/>}
         </>
 
     )
 }
 
-export default CreateForm
+export default CreateCardForm

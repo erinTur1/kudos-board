@@ -1,7 +1,7 @@
 import Card from "./Card.jsx";
 import "../styles/CardList.css"
 
-const CardList = ({ cards, deleteCardById }) => {
+const CardList = ({ cards, boardId, deleteCardById, upvoteCardById }) => {
 
     const deleteCard = (id) => {
         deleteCardById(id)
@@ -15,6 +15,7 @@ const CardList = ({ cards, deleteCardById }) => {
                 return <Card 
                 key={card.id}
                 cardData={card}
+                boardId={boardId}
                 handleDeleteCard={deleteCard}
                 />
             })
