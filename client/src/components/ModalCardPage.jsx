@@ -17,8 +17,10 @@ const ModalCardPage = ({ boardId, closeModal, appendNewCard }) => {
             body: JSON.stringify({
                 "title": newCardTitle,
                 "message": newCardMessage,
-                "gif": newCardGifUrl,
-                "author": newCardAuthor
+                "gif_url": newCardGifUrl,
+                "author": newCardAuthor,
+                "numVotes": 0,
+				"isPinned": false
             }),
         })
         .then(async(response) => { //QUESTION:is putting async like this ok?

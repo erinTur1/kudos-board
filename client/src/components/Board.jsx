@@ -10,7 +10,7 @@ const Board = ({boardData, handleDeleteBoard}) => {
     }
 
     return <div className="board">
-        <img src={boardData.boardImg}/>
+        <img src={boardData.image_url}/>
         <h2>{boardData.title}</h2>
         <p>{boardData.description}</p>
         <div>

@@ -20,6 +20,7 @@ const HomePage = () => {
     }, []);
 
     const fetchBoards = () => {
+        //works!
         fetch('http://localhost:3000/boards')
             .then(response => response.json())
             .then(data => {
@@ -30,6 +31,7 @@ const HomePage = () => {
     };
 
     const deleteBoardById = (boardId) => {
+        //works!
         fetch(`http://localhost:3000/boards/${boardId}`, {
             method: 'DELETE',
         })
@@ -58,7 +60,7 @@ const HomePage = () => {
             const updatedBoards = filterByRecent(defaultBoards.current);
             setBoards(updatedBoards);
         } else if (filter === "all") {
-            fetchBoards(); //BETTER OPTION THAN REFETCHING?
+            fetchBoards(); //use default boards?
         } else { 
             const updatedBoards = filterByCategory(defaultBoards.current, filter);
             setBoards(updatedBoards);
