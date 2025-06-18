@@ -67,14 +67,22 @@ const HomePage = () => {
 
     const handleSearchChange = (newSearchRequest) => {
         setSearchRequest(newSearchRequest); //might be able to move this state to SearchForm
-        const newBoards = boards.filter(board => 
-            board.title.includes(newSearchRequest)
-        );
-        setBoards(newBoards);
+
+        //commented out below because changed to not have search-as-you-type functionality
+            //(following exact project instructions)
+
+        // const newBoards = defaultBoards.current.filter(board => 
+        //     board.title.includes(newSearchRequest)
+        // );
+        // setBoards(newBoards);
     }
 
     const handleSearchSubmit = (newSearchRequest) => {
-
+        setSearchRequest(newSearchRequest);
+        const newBoards = defaultBoards.current.filter(board => 
+            board.title.includes(newSearchRequest)
+        );
+        setBoards(newBoards);
     }
 
     return (
