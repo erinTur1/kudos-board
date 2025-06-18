@@ -5,6 +5,11 @@ import CardList from "../components/CardList";
 import Footer from "../components/Footer";
 import CreateCardForm from "../components/CreateCardForm";
 
+//to do
+//enums global
+//react suspense?
+//
+
 const CardsPage = () => {
 
     const location = useLocation(); //parameter is passed to CardsPage from Board.jsx on click. Need useLocation to get board name parameter sent with it

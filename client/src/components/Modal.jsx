@@ -3,6 +3,7 @@ import "../styles/Modal.css"
 const Modal = ({ closeModal, appendNewBoard }) => {
 
     const postBoard = (newBoardTitle, newBoardCategory, newBoardAuthor) => {
+        //works!!!
         fetch("http://localhost:3000/boards", {
             method: 'POST',
             headers: {
@@ -12,7 +13,8 @@ const Modal = ({ closeModal, appendNewBoard }) => {
                 "title": newBoardTitle,
                 "category": newBoardCategory,
                 "author": newBoardAuthor,
-                "time_created": Date.now(),
+                "image_url": "https://picsum.photos/200/300"
+                // "time_created": Date.now(),
             }),
         })
         .then(async(response) => { //QUESTION:is putting async like this ok?
@@ -51,7 +53,7 @@ const Modal = ({ closeModal, appendNewBoard }) => {
                         <option disabled value="">Select a category</option>
                         {/* NEED ENUMS HERE */}
                         <option value="celebration">Celebration</option>
-                        <option value="thank-you">Thank you</option>
+                        <option value="thank you">Thank you</option>
                         <option value="inspiration">Inspiration</option>
                     </select><br />
                     <label htmlFor="author-input">Author:</label><br />

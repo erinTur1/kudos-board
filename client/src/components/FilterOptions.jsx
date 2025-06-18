@@ -1,18 +1,28 @@
 import "../styles/FilterOptions.css"
 const FilterOptions = ({ filterBoards }) => {
 
+    const FilterType = Object.freeze({
+        NONE: "none" ,
+        ALL: "all",
+        RECENT: "recent",
+        CELEBRATION: "celebration",
+        THANK_YOU: "thank you",
+        INSPIRATION: "inspiration"
+
+    });
+
+
     const handleFilterClick = (event) => {
         filterBoards(event.target.value)
     }
 
     return (
         <div className="filter-buttons">
-            {/* clean up?  - enums???*/}
-            <button value="all" onClick={handleFilterClick}>All</button>
-            <button value="recent" onClick={handleFilterClick}>Recent</button>
-            <button value="Celebration" onClick={handleFilterClick}>Celebration</button>
-            <button value="Thank you" onClick={handleFilterClick}>Thank you</button>
-            <button value="Inspiration" onClick={handleFilterClick}>Inspiration</button>
+            <button value={FilterType.ALL} onClick={handleFilterClick}>All</button>
+            <button value={FilterType.RECENT} onClick={handleFilterClick}>Recent</button>
+            <button value={FilterType.CELEBRATION} onClick={handleFilterClick}>Celebration</button>
+            <button value={FilterType.THANK_YOU} onClick={handleFilterClick}>Thank you</button>
+            <button value={FilterType.INSPIRATION} onClick={handleFilterClick}>Inspiration</button>
         </div>
     )
 
