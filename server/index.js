@@ -6,7 +6,7 @@ const PORT = 3000;
 let boards = [
     {
         "id": 0,
-        "title": "study inspo",
+        "title": "funny study inspo",
         //make enum?
         "category": "Inspiration",
         "author": "erin",
@@ -17,21 +17,21 @@ let boards = [
                 "title": "title1",
                 "message": "code1",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numUpVotes": 3
+                "numVotes": 3
             },
             {
                 "id": 1,
                 "title": "title2",
                 "message": "code2",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numUpVotes": 2
+                "numVotes": 2
             },
             {
                 "id": 2,
                 "title": "title3",
                 "message": "code3",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numUpVotes": 30
+                "numVotes": 30
             },
             
         ]
@@ -48,21 +48,21 @@ let boards = [
                 "title": "title4",
                 "message": "exercise1",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numUpVotes": 3
+                "numVotes": 3
             },
             {
                 "id": 1,
                 "title": "title5",
                 "message": "exercise2",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numUpVotes": 2
+                "numVotes": 2
             },
             {
                 "id": 2,
                 "title": "title6",
                 "message": "exercise3",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numUpVotes": 30
+                "numVotes": 30
             },
             
         ]
@@ -79,21 +79,21 @@ let boards = [
                 "title": "title7",
                 "message": "fun1",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numUpVotes": 3
+                "numVotes": 3
             },
             {
                 "id": 1,
                 "title": "title8",
                 "message": "fun2",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numUpVotes": 2
+                "numVotes": 2
             },
             {
                 "id": 2,
                 "title": "title9",
                 "message": "fun3",
                 "gif": 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG45aGthMDkwcmNyaHM4Y29hdGxsaWRwejB4a2l3MG92cTc5a2s5biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HzPtbOKyBoBFsK4hyc/giphy.gif',
-                "numUpVotes": 30
+                "numVotes": 30
             },
             
         ]
@@ -148,12 +148,36 @@ app.delete('/boards/:boardId', (req, res) => {
 
 //create card
 app.post('/boards/:boardId/cards', (req, res) => {
+    const receivedCardData = req.body;
+    const boardId = parseInt(req.params.boardId);
+    const board = boards.find(board => board.id === boardId);
+    const newCard = {
+        id: board.cards.length,
+        numUpVotes: 0,
+        ...receivedCardData
+    };
 
+    board.cards.push(newCard);
+
+    res.status(201).send(newCard);
 });
 
 //update card upvotes
 app.put('/boards/:boardId/cards/:cardId', (req, res) => {
-     
+    const boardId = parseInt(req.params.boardId);
+    const cardId = parseInt(req.params.cardId);
+    const board = boards.find(board => board.id === boardId);
+    //NEED NULL BOARD CHECK HERE 
+    const cardInd = board.cards.findIndex(card => card.id === cardId);
+
+    if(cardInd != -1) {
+        const updatedCardInfo = req.body;
+        board.cards[cardInd] = { ...board.cards[cardInd], ...updatedCardInfo };
+        res.json(board.cards[cardInd])
+    } else {
+        res.status(404).send('Card not found');
+    }
+
 });
 
 //delete card by id

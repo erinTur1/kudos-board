@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Header from "../components/Header";
 import CardList from "../components/CardList";
 import Footer from "../components/Footer";
+import CreateCardForm from "../components/CreateCardForm";
 
 const CardsPage = () => {
 
@@ -44,6 +45,10 @@ const CardsPage = () => {
         .catch(error => console.error(error))
     }
 
+    const appendNewCard = (newCard) => {
+        setCards([...cards, newCard]);
+    }
+
     const updateCardVotes = (cardId) => {
 
     }
@@ -52,10 +57,12 @@ const CardsPage = () => {
         <div id="cards-page">
             <Header />
             <h1>{location.state.boardName}</h1>
-            <button>Create Card</button>
+            <CreateCardForm boardId={boardIdParam} appendNewCard={appendNewCard}/>
             <CardList 
             cards={cards}
+            boardId={boardIdParam}
             deleteCardById={deleteCardById}
+            // upvoteCardById={upvoteCardById}
             />
             <Footer />
         </div>

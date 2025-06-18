@@ -15,12 +15,15 @@ const HomePage = () => {
     //useEffect fetch all api boards 
     useEffect(() => {
         fetchBoards();
+        
     }, []);
 
     const fetchBoards = () => {
         fetch('http://localhost:3000/boards')
             .then(response => response.json())
-            .then(data => {setBoards(data)})
+            .then(data => {
+                setBoards(data);
+            })
             .catch(error => console.error('Error fetching boards:', error))
     };
 
