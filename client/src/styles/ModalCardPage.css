@@ -1,0 +1,12 @@
+.gif-results-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: 20%;
+    overflow: scroll;
+}
+
+.gif-img {
+    max-width: 90px;
+    max-height: 90px;
+}

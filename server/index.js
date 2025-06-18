@@ -256,6 +256,7 @@ app.post('/boards', (req, res) => {
     const receivedBoardData = req.body;
     const newBoard = {
         id: boards.length,
+        cards: [],
         ...receivedBoardData
     };
 

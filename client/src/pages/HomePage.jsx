@@ -49,7 +49,7 @@ const HomePage = () => {
 
     const appendNewBoard = (newBoard) => {
         setBoards([...boards, newBoard]);
-        defaultBoards.current = [...boards, newBoard];
+        defaultBoards.current = [...defaultBoards, newBoard];
     }
 
     const filterBoards = (filter) => {
