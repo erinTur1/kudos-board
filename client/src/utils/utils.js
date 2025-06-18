@@ -1,5 +1,8 @@
-const filterByRecent = () => {
-
+const filterByRecent = (boards) => {
+    let tempBoards = [...boards];
+    tempBoards.sort((a, b) => b.time_created - a.time_created);
+    tempBoards.splice(6);
+    return tempBoards;
 }
 
 const filterByCategory = (boards, category) => {

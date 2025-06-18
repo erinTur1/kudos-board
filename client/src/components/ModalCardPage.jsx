@@ -3,6 +3,7 @@ import "../styles/Modal.css"
 const ModalCardPage = ({ boardId, closeModal, appendNewCard }) => {
 
     const postCard = (newCardTitle, newCardMessage, newCardGifUrl, newCardAuthor) => {
+        console.log("helooo", Date.now())
         fetch(`http://localhost:3000/boards/${boardId}/cards`, {
             method: 'POST',
             headers: {

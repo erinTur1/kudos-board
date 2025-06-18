@@ -11,7 +11,8 @@ const Modal = ({ closeModal, appendNewBoard }) => {
             body: JSON.stringify({
                 "title": newBoardTitle,
                 "category": newBoardCategory,
-                "author": newBoardAuthor
+                "author": newBoardAuthor,
+                "time_created": Date.now(),
             }),
         })
         .then(async(response) => { //QUESTION:is putting async like this ok?
