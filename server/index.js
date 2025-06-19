@@ -1,10 +1,10 @@
 import cors from 'cors';
-// import express, { json } from 'express';
-// import { PrismaClient } from './generated/prisma';
+import express, { json } from 'express';
+import { PrismaClient } from './generated/prisma';
 
 // const cors = require('cors');
-const express = require('express');
-const { PrismaClient } = require('./generated/prisma');
+// const express = require('express');
+// const { PrismaClient } = require('./generated/prisma');
 
 const prisma = new PrismaClient();
 const app = express();
