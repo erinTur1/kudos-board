@@ -5,7 +5,7 @@ import BoardList from "../components/BoardList";
 import Footer from "../components/Footer";
 import CreateForm from "../components/CreateForm";
 import FilterOptions from '../components/FilterOptions';
-import { filterByRecent, filterByCategory } from "../utils/utils";
+import { filterByRecent, filterByCategory, FilterType } from "../utils/utils";
 
 const HomePage = () => {
 
@@ -39,7 +39,6 @@ const HomePage = () => {
             if (!response.ok) {
                 throw new Error ('Failed to delete board')
             } else {
-                console.log("Board deleted successfully");
                 //Is there a better way to reflect the deletion on frontend?:
                 setBoards(boards.filter(board => board.id !== parseInt(boardId)));
                 defaultBoards.current = boards.filter(board => board.id !== parseInt(boardId));
@@ -51,16 +50,17 @@ const HomePage = () => {
 
     const appendNewBoard = (newBoard) => {
         setBoards([...boards, newBoard]);
-        defaultBoards.current = [...defaultBoards, newBoard];
+        console.log(defaultBoards);
+        defaultBoards.current = [...defaultBoards.current, newBoard];
     }
 
     const filterBoards = (filter) => {
-        //ENUMS NEEDED
-        if (filter === "recent") {
+        if (filter === FilterType.RECENT) {
             const updatedBoards = filterByRecent(defaultBoards.current);
             setBoards(updatedBoards);
-        } else if (filter === "all") {
-            fetchBoards(); //use default boards?
+        } else if (filter === FilterType.ALL) {
+            //fetchBoards(); //use default boards?
+            setBoards(defaultBoards.current);
         } else { 
             const updatedBoards = filterByCategory(defaultBoards.current, filter);
             setBoards(updatedBoards);
@@ -69,14 +69,6 @@ const HomePage = () => {
 
     const handleSearchChange = (newSearchRequest) => {
         setSearchRequest(newSearchRequest); //might be able to move this state to SearchForm
-
-        //commented out below because changed to not have search-as-you-type functionality
-            //(following exact project instructions)
-
-        // const newBoards = defaultBoards.current.filter(board => 
-        //     board.title.includes(newSearchRequest)
-        // );
-        // setBoards(newBoards);
     }
 
     const handleSearchSubmit = (newSearchRequest) => {
@@ -89,7 +81,7 @@ const HomePage = () => {
 
     return (
         <div id="home-page">
-            <Header />
+            <Header isBackArrowActive={false}/>
             <SearchForm 
             searchRequest={searchRequest} 
             onSearchChange={handleSearchChange} 

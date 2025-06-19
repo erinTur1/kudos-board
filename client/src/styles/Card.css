@@ -22,3 +22,7 @@
 .card button:hover {
     padding: 10px;
 }
+
+.pin-icon {
+    font-size: 30px;
+}

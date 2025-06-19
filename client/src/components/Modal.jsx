@@ -1,3 +1,4 @@
+import { FilterType } from "../utils/utils"
 import "../styles/Modal.css"
 
 const Modal = ({ closeModal, appendNewBoard }) => {
@@ -13,7 +14,7 @@ const Modal = ({ closeModal, appendNewBoard }) => {
                 "title": newBoardTitle,
                 "category": newBoardCategory,
                 "author": newBoardAuthor,
-                "image_url": "https://picsum.photos/200/300"
+                "image_url": `https://picsum.photos/200/300?random=${Math.floor(Math.random() * 1000 + 1)}`
                 // "time_created": Date.now(),
             }),
         })
@@ -50,11 +51,10 @@ const Modal = ({ closeModal, appendNewBoard }) => {
                     <input required type="text" id="title-input" name="title"></input><br />
                     <label htmlFor="category">Category:</label><br />
                     <select required id="category" name="category" defaultValue="">
-                        <option disabled value="">Select a category</option>
-                        {/* NEED ENUMS HERE */}
-                        <option value="celebration">Celebration</option>
-                        <option value="thank you">Thank you</option>
-                        <option value="inspiration">Inspiration</option>
+                        <option disabled value={FilterType.NONE}>Select a category</option>
+                        <option value={FilterType.CELEBRATION}>Celebration</option>
+                        <option value={FilterType.THANK_YOU}>Thank you</option>
+                        <option value={FilterType.INSPIRATION}>Inspiration</option>
                     </select><br />
                     <label htmlFor="author-input">Author:</label><br />
                     <input type="text" id="author-input" name="author"></input><br />

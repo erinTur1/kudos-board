@@ -5,11 +5,6 @@ import CardList from "../components/CardList";
 import Footer from "../components/Footer";
 import CreateCardForm from "../components/CreateCardForm";
 
-//to do
-//enums global
-//react suspense?
-//
-
 const CardsPage = () => {
 
     const location = useLocation(); //parameter is passed to CardsPage from Board.jsx on click. Need useLocation to get board name parameter sent with it
@@ -51,8 +46,6 @@ const CardsPage = () => {
     }
 
     const appendNewCard = (newCard) => {
-        console.log("Here1: ", cards);
-        console.log("Here2: ", newCard);
         setCards([...cards, newCard]);
     }
 
@@ -62,14 +55,13 @@ const CardsPage = () => {
 
     return (
         <div id="cards-page">
-            <Header />
+            <Header isBackArrowActive={true}/>
             <h1>{location.state.boardName}</h1>
             <CreateCardForm boardId={boardIdParam} appendNewCard={appendNewCard}/>
             <CardList 
             cards={cards}
             boardId={boardIdParam}
             deleteCardById={deleteCardById}
-            // upvoteCardById={upvoteCardById}
             />
             <Footer />
         </div>

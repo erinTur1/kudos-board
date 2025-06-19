@@ -20,14 +20,14 @@ model Board {
   category String
   image_url String
   author String
-  cards Card[]
+  cards Card[] 
   createdAt DateTime @default(now())
 }
 
 model Card {
   id Int @id @default(autoincrement())
   boardId Int
-  board Board @relation(fields: [boardId], references: [id])
+  board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
   title String
   message String
   gif_url String
