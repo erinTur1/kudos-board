@@ -1,10 +1,10 @@
-import cors from 'cors';
-import express, { json } from 'express';
-import { PrismaClient } from './generated/prisma';
+// import cors from 'cors';
+// import express, { json } from 'express';
+// import PrismaClient from './generated/prisma';
 
-// const cors = require('cors');
-// const express = require('express');
-// const { PrismaClient } = require('./generated/prisma');
+const cors = require('cors');
+const express = require('express');
+const { PrismaClient } = require('./generated/prisma');
 
 const prisma = new PrismaClient();
 const app = express();
@@ -15,7 +15,7 @@ app.use(cors());
 app.use(json()); 
 
 //get all boards
-app.get(`${import.meta.env.DEPLOYED_URL}/boards`, async (req, res) => {
+app.get("https://kudos-board-aatr.onrender.com/boards", async (req, res) => {
     try {
         const boards = await prisma.board.findMany({
             include: {
@@ -30,7 +30,7 @@ app.get(`${import.meta.env.DEPLOYED_URL}/boards`, async (req, res) => {
 });
 
 //get board by id
-app.get(`${import.meta.env.DEPLOYED_URL}/boards/:boardId`, async (req, res) => {
+app.get("https://kudos-board-aatr.onrender.com/boards/:boardId", async (req, res) => {
     const boardId = parseInt(req.params.boardId);
     try {
         const board = await prisma.board.findUnique({
@@ -49,7 +49,7 @@ app.get(`${import.meta.env.DEPLOYED_URL}/boards/:boardId`, async (req, res) => {
 });
 
 //create board
-app.post(`${import.meta.env.DEPLOYED_URL}/boards`, async (req, res) => {
+app.post("https://kudos-board-aatr.onrender.com/boards", async (req, res) => {
     const { title, category, author, image_url } = req.body;
     try {
         const newBoard = await prisma.board.create({
@@ -69,7 +69,7 @@ app.post(`${import.meta.env.DEPLOYED_URL}/boards`, async (req, res) => {
 });
 
 //delete board by id
-app.delete(`${import.meta.env.DEPLOYED_URL}/boards/:boardId`, async (req, res) => {
+app.delete("https://kudos-board-aatr.onrender.com/boards/:boardId", async (req, res) => {
     const { boardId } = req.params;
     try {
 
@@ -94,7 +94,7 @@ app.delete(`${import.meta.env.DEPLOYED_URL}/boards/:boardId`, async (req, res) =
 })
 
 //create card
-app.post(`${import.meta.env.DEPLOYED_URL}/boards/:boardId/cards`, async (req, res) => {
+app.post("https://kudos-board-aatr.onrender.com/boards/:boardId/cards", async (req, res) => {
     const { title, message, gif_url, author, numVotes, isPinned} = req.body;
     const boardId = parseInt(req.params.boardId);
 
@@ -119,7 +119,7 @@ app.post(`${import.meta.env.DEPLOYED_URL}/boards/:boardId/cards`, async (req, re
 });
 
 //update card upvotes
-app.put(`${import.meta.env.DEPLOYED_URL}/boards/:boardId/cards/:cardId`, async (req, res) => {
+app.put("https://kudos-board-aatr.onrender.com/boards/:boardId/cards/:cardId", async (req, res) => {
     const cardId = parseInt(req.params.cardId);
 
     try {
@@ -148,7 +148,7 @@ app.put(`${import.meta.env.DEPLOYED_URL}/boards/:boardId/cards/:cardId`, async (
 });
 
 //delete card by id
-app.delete(`${import.meta.env.DEPLOYED_URL}/boards/:boardId/cards/:cardId`, async (req, res) => {
+app.delete("https://kudos-board-aatr.onrender.com/boards/:boardId/cards/:cardId", async (req, res) => {
     const boardId = parseInt(req.params.boardId);
     const cardId = parseInt(req.params.cardId);
 
