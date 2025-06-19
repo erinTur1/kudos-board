@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json()); 
 
 //get all boards
-app.get('/boards', async (req, res) => {
+app.get(`${import.meta.env.DEPLOYED_URL}/boards`, async (req, res) => {
     try {
         const boards = await prisma.board.findMany({
             include: {
@@ -24,7 +24,7 @@ app.get('/boards', async (req, res) => {
 });
 
 //get board by id
-app.get('/boards/:boardId', async (req, res) => {
+app.get(`${import.meta.env.DEPLOYED_URL}/boards/:boardId`, async (req, res) => {
     const boardId = parseInt(req.params.boardId);
     try {
         const board = await prisma.board.findUnique({
@@ -43,7 +43,7 @@ app.get('/boards/:boardId', async (req, res) => {
 });
 
 //create board
-app.post('/boards', async (req, res) => {
+app.post(`${import.meta.env.DEPLOYED_URL}/boards`, async (req, res) => {
     const { title, category, author, image_url } = req.body;
     try {
         const newBoard = await prisma.board.create({
@@ -63,7 +63,7 @@ app.post('/boards', async (req, res) => {
 });
 
 //delete board by id
-app.delete('/boards/:boardId', async (req, res) => {
+app.delete(`${import.meta.env.DEPLOYED_URL}/boards/:boardId`, async (req, res) => {
     const { boardId } = req.params;
     try {
 
@@ -88,7 +88,7 @@ app.delete('/boards/:boardId', async (req, res) => {
 })
 
 //create card
-app.post('/boards/:boardId/cards', async (req, res) => {
+app.post(`${import.meta.env.DEPLOYED_URL}/boards/:boardId/cards`, async (req, res) => {
     const { title, message, gif_url, author, numVotes, isPinned} = req.body;
     const boardId = parseInt(req.params.boardId);
 
@@ -113,7 +113,7 @@ app.post('/boards/:boardId/cards', async (req, res) => {
 });
 
 //update card upvotes
-app.put('/boards/:boardId/cards/:cardId', async (req, res) => {
+app.put(`${import.meta.env.DEPLOYED_URL}/boards/:boardId/cards/:cardId`, async (req, res) => {
     const cardId = parseInt(req.params.cardId);
 
     try {
@@ -142,7 +142,7 @@ app.put('/boards/:boardId/cards/:cardId', async (req, res) => {
 });
 
 //delete card by id
-app.delete('/boards/:boardId/cards/:cardId', async (req, res) => {
+app.delete(`${import.meta.env.DEPLOYED_URL}/boards/:boardId/cards/:cardId`, async (req, res) => {
     const boardId = parseInt(req.params.boardId);
     const cardId = parseInt(req.params.cardId);
 
