@@ -1,22 +1,30 @@
 import Card from "./Card.jsx";
 import "../styles/CardList.css"
 
-const CardList = ({ cards, boardId, deleteCardById, upvoteCardById }) => {
+const CardList = ({ cards, boardId, deleteCardById, cardRefetch }) => {
 
-    const deleteCard = (id) => {
-        deleteCardById(id)
-    }
+    // const deleteCard = (id) => {
+    //     deleteCardById(id)
+    // }
+
+    // const handlePinClick = () => {
+    //     moveCard();
+    // }
 
 
     return <section className="card-list-container">
         {
             
-            cards?.map((card) => {
+            cards?.map((card, index) => {
                 return <Card 
                 key={card.id}
                 cardData={card}
                 boardId={boardId}
-                handleDeleteCard={deleteCard}
+                handleDeleteCard={(id) => {
+                    deleteCardById(id);
+                }}
+                handlePinChange={cardRefetch}
+                indexInCards={index}
                 />
             })
         }

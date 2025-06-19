@@ -22,9 +22,9 @@ const CardsPage = () => {
     //QUESTION: should I not fetch cards and board data again and just use it from state?
 
     const fetchCards = () => {
-        fetch(`http://localhost:3000/boards/${boardIdParam}`)
+        fetch(`http://localhost:3000/boards/${boardIdParam}/cards`)
             .then(response => response.json())
-            .then(data => setCards(data.cards))
+            .then(data => setCards(data))
             .catch(error => console.error('Error fetching boards:', error))
     };
     
@@ -49,8 +49,25 @@ const CardsPage = () => {
         setCards([...cards, newCard]);
     }
 
-    const updateCardVotes = (cardId) => {
+    // const moveCard = (isPinned, ind) => {
+    //     if(isPinned) { //need to move it to the top
+    //         //swap the now pinned card with the first card in the cards array
+    //         let tempCards = cards;
+    //         let temp = tempCards[ind];
+    //         tempCards[ind] = tempCards[0];
+    //         tempCards[0] = temp;
+    //         setCards[tempCards];
+    //     } else { //need to move it to the end
+    //         let tempCards = cards;
+    //         let temp = tempCards[ind];
+    //         tempCards[ind] = tempCards[cards.length - 1];
+    //         tempCards[cards.length - 1] = temp;
+    //         setCards[tempCards];
+    //     }
+    // }
 
+    const cardRefetch = () => {
+        fetchCards();
     }
 
     return (
@@ -62,6 +79,7 @@ const CardsPage = () => {
             cards={cards}
             boardId={boardIdParam}
             deleteCardById={deleteCardById}
+            cardRefetch={cardRefetch}
             />
             <Footer />
         </div>
