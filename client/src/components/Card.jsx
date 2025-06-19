@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { FaThumbtackSlash } from "react-icons/fa6";
+import { FaThumbtack } from "react-icons/fa6";
 import "../styles/Card.css";
 
 const Card = ({cardData, boardId, handleDeleteCard, handleUpVoteCard}) => {
 
-    const [numUpVotes, setNumUpVotes] = useState(cardData.numVotes)
+    const [numUpVotes, setNumUpVotes] = useState(cardData.numVotes);
+    const [isPinned, setIsPinned] = useState(cardData.isPinned);
 
     //QUESTION: should I have a state variable here with number of updates and only when the user exits the page, it does a fetch call and 
     //updates the total num of upvotes. - or should i just do a fetch call for each upvote
@@ -32,8 +35,13 @@ const Card = ({cardData, boardId, handleDeleteCard, handleUpVoteCard}) => {
 
     }
 
+    const handlePin = () => {
+        setIsPinned(prevState => !prevState);
+    }
+
 
     return <div className="card">
+        {isPinned?  <FaThumbtack onClick={handlePin} className='pin-icon'/>: <FaThumbtackSlash onClick={handlePin} className='pin-icon'/>}
         <h2>{cardData.title}</h2>
         <p>{cardData.message}</p>
         <img src={cardData.gif_url}/>

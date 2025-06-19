@@ -12,4 +12,15 @@ const filterByCategory = (boards, category) => {
     return newBoards;
 }
 
-export { filterByRecent, filterByCategory };
+//enums for categories
+const FilterType = Object.freeze({
+    NONE: "" ,
+    ALL: "all",
+    RECENT: "recent",
+    CELEBRATION: "celebration",
+    THANK_YOU: "thank you",
+    INSPIRATION: "inspiration"
+
+});
+
+export { filterByRecent, filterByCategory, FilterType };

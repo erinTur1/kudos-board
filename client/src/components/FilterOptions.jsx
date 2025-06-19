@@ -1,16 +1,6 @@
+import { FilterType } from "../utils/utils"
 import "../styles/FilterOptions.css"
 const FilterOptions = ({ filterBoards }) => {
-
-    const FilterType = Object.freeze({
-        NONE: "none" ,
-        ALL: "all",
-        RECENT: "recent",
-        CELEBRATION: "celebration",
-        THANK_YOU: "thank you",
-        INSPIRATION: "inspiration"
-
-    });
-
 
     const handleFilterClick = (event) => {
         filterBoards(event.target.value)
