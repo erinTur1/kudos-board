@@ -1,12 +1,16 @@
-const cors = require('cors');
-const express = require('express');
-const { PrismaClient } = require('./generated/prisma');
+import cors from 'cors';
+import express, { json } from 'express';
+import { PrismaClient } from './generated/prisma';
+// const cors = require('cors');
+// const express = require('express');
+// const { PrismaClient } = require('./generated/prisma');
 const prisma = new PrismaClient();
 const app = express();
 const PORT = 3000;
 
+
 app.use(cors());
-app.use(express.json()); 
+app.use(json()); 
 
 //get all boards
 app.get(`${import.meta.env.DEPLOYED_URL}/boards`, async (req, res) => {
