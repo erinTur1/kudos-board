@@ -1,21 +1,15 @@
-// import cors from 'cors';
-// import express, { json } from 'express';
-// import PrismaClient from './generated/prisma';
-
 const cors = require('cors');
 const express = require('express');
 const { PrismaClient } = require('./generated/prisma');
-
 const prisma = new PrismaClient();
 const app = express();
 const PORT = 3000;
 
-
 app.use(cors());
-app.use(json()); 
+app.use(express.json()); 
 
 //get all boards
-app.get("https://kudos-board-aatr.onrender.com/boards", async (req, res) => {
+app.get('/boards', async (req, res) => {
     try {
         const boards = await prisma.board.findMany({
             include: {
@@ -30,7 +24,7 @@ app.get("https://kudos-board-aatr.onrender.com/boards", async (req, res) => {
 });
 
 //get board by id
-app.get("https://kudos-board-aatr.onrender.com/boards/:boardId", async (req, res) => {
+app.get('/boards/:boardId', async (req, res) => {
     const boardId = parseInt(req.params.boardId);
     try {
         const board = await prisma.board.findUnique({
@@ -49,7 +43,7 @@ app.get("https://kudos-board-aatr.onrender.com/boards/:boardId", async (req, res
 });
 
 //create board
-app.post("https://kudos-board-aatr.onrender.com/boards", async (req, res) => {
+app.post('/boards', async (req, res) => {
     const { title, category, author, image_url } = req.body;
     try {
         const newBoard = await prisma.board.create({
@@ -69,7 +63,7 @@ app.post("https://kudos-board-aatr.onrender.com/boards", async (req, res) => {
 });
 
 //delete board by id
-app.delete("https://kudos-board-aatr.onrender.com/boards/:boardId", async (req, res) => {
+app.delete('/boards/:boardId', async (req, res) => {
     const { boardId } = req.params;
     try {
 
@@ -94,7 +88,7 @@ app.delete("https://kudos-board-aatr.onrender.com/boards/:boardId", async (req, 
 })
 
 //create card
-app.post("https://kudos-board-aatr.onrender.com/boards/:boardId/cards", async (req, res) => {
+app.post('/boards/:boardId/cards', async (req, res) => {
     const { title, message, gif_url, author, numVotes, isPinned} = req.body;
     const boardId = parseInt(req.params.boardId);
 
@@ -119,7 +113,7 @@ app.post("https://kudos-board-aatr.onrender.com/boards/:boardId/cards", async (r
 });
 
 //update card upvotes
-app.put("https://kudos-board-aatr.onrender.com/boards/:boardId/cards/:cardId", async (req, res) => {
+app.put('/boards/:boardId/cards/:cardId', async (req, res) => {
     const cardId = parseInt(req.params.cardId);
 
     try {
@@ -148,7 +142,7 @@ app.put("https://kudos-board-aatr.onrender.com/boards/:boardId/cards/:cardId", a
 });
 
 //delete card by id
-app.delete("https://kudos-board-aatr.onrender.com/boards/:boardId/cards/:cardId", async (req, res) => {
+app.delete('/boards/:boardId/cards/:cardId', async (req, res) => {
     const boardId = parseInt(req.params.boardId);
     const cardId = parseInt(req.params.cardId);
 
