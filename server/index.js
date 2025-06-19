@@ -23,7 +23,7 @@ app.get('/boards', async (req, res) => {
     }
 });
 
-//get board by id
+//get board by id - remove?
 app.get('/boards/:boardId', async (req, res) => {
     const boardId = parseInt(req.params.boardId);
     try {
@@ -87,6 +87,26 @@ app.delete('/boards/:boardId', async (req, res) => {
     }
 })
 
+//get cards by board id and order by pinned first (in the order they were pinned) then not pinned
+app.get('/boards/:boardId/cards', async (req, res) => {
+    const boardId = parseInt(req.params.boardId);
+    try {
+        const cards = await prisma.card.findMany({
+            where: {
+                boardId: boardId,
+            },
+            orderBy: [
+                {isPinned: 'desc'}, //first order by pinned then unpinned
+                {pinOrder: 'desc'} //then order by order cards were pinned in
+            ]
+        });
+        res.status(200).json(cards);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Could not get board');
+    }
+});
+
 //create card
 app.post('/boards/:boardId/cards', async (req, res) => {
     const { title, message, gif_url, author, numVotes, isPinned} = req.body;
@@ -101,7 +121,7 @@ app.post('/boards/:boardId/cards', async (req, res) => {
                 gif_url,
                 author,
                 numVotes,
-                isPinned 
+                isPinned,
             }
         });
         res.status(201).json(newCard);
@@ -113,7 +133,7 @@ app.post('/boards/:boardId/cards', async (req, res) => {
 });
 
 //update card upvotes
-app.put('/boards/:boardId/cards/:cardId', async (req, res) => {
+app.put('/boards/:boardId/cards/:cardId/upvote', async (req, res) => {
     const cardId = parseInt(req.params.cardId);
 
     try {
@@ -137,6 +157,50 @@ app.put('/boards/:boardId/cards/:cardId', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send('Could not upvote card');
+    }
+
+});
+
+//update card (pinned or upvote)
+app.put('/boards/:boardId/cards/:cardId/pin', async (req, res) => {
+    const cardId = parseInt(req.params.cardId);
+
+
+    try {
+        const card = await prisma.card.findUnique({
+            where: {
+                id: cardId,
+            }
+        });
+
+        if (!card) {
+            res.status(404).send('Card by this id does not exist');
+        }
+
+        let newPinOrder = card.pinOrder
+        if (newPinOrder == -1) { //if card is not already pinned
+            // newPinOrder = await prisma.card.findFirst().pinOrder + 1;
+            const lastPinnedCard = await prisma.card.findFirst({
+                orderBy: { pinOrder: 'desc'}
+            });
+
+            lastPinnedCard? (newPinOrder = lastPinnedCard.pinOrder + 1) : (newPinOrder = 1);
+
+        } else { //if card is already pinned
+            newPinOrder = -1;
+        }
+
+        const updatedCard = await prisma.card.update({
+            where: {id: cardId},
+            data: {
+               isPinned: !card.isPinned,
+               pinOrder: newPinOrder
+            }
+        })
+        res.status(200).json(updatedCard);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Could not pin card');
     }
 
 });

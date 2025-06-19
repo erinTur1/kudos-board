@@ -33,5 +33,6 @@ model Card {
   gif_url String
   numVotes Int
   isPinned Boolean
+  pinOrder Int @default(-1)
   author String
 }
