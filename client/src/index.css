@@ -16,7 +16,7 @@
 }
 
 [mode='dark-mode'] {
-  --body-background: rgb(26, 25, 25);
+  --body-background: #1a1919;
   --text: white;
   --primary: blue;
   

@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import Modal from "./Modal";
+import ModalBoardPage from "./ModalBoardPage";
 import "../styles/CreateForm.css"
 
-const CreateForm = ({ appendNewBoard }) => {
+//renders create button and modal for input when activated
+const CreateBoardForm = ({ appendNewBoard }) => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -17,7 +18,7 @@ const CreateForm = ({ appendNewBoard }) => {
     return (
         <>
             <button className="create-new-btn" onClick={openModal}>Create a New Board</button>
-            {isModalVisible && <Modal closeModal={closeModal} appendNewBoard={(newBoard) => {
+            {isModalVisible && <ModalBoardPage closeModal={closeModal} appendNewBoard={(newBoard) => {
                 setIsModalVisible(false);
                 appendNewBoard(newBoard);
             }}/>}
@@ -26,4 +27,4 @@ const CreateForm = ({ appendNewBoard }) => {
     )
 }
 
-export default CreateForm
+export default CreateBoardForm

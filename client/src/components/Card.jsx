@@ -9,13 +9,16 @@ const Card = ({cardData, boardId, handleDeleteCard, handlePinChange}) => {
     const [numUpVotes, setNumUpVotes] = useState(cardData.numVotes);
     const [isPinned, setIsPinned] = useState(cardData.isPinned);
 
+    //card will also handle rendering of comments modal if the card's "comment" button is clicked
+    const [isCommentsModalVisible, setIsCommentsModalVisible] = useState(false);
+
 
     const handleDelete = () => {
         handleDeleteCard(cardData.id);
     }
 
     const handleUpVote = () => {
-        //put request
+        //put request to increase num upvotes by 1
         fetch(`http://localhost:3000/boards/${boardId}/cards/${cardData.id}/upvote`, {
             method: 'PUT',
             headers: {
@@ -35,7 +38,7 @@ const Card = ({cardData, boardId, handleDeleteCard, handlePinChange}) => {
     }
 
     const handlePin = () => {
-        //put request
+        //put request to change pin status
         fetch(`http://localhost:3000/boards/${boardId}/cards/${cardData.id}/pin`, {
             method: 'PUT',
             headers: {
@@ -56,15 +59,13 @@ const Card = ({cardData, boardId, handleDeleteCard, handlePinChange}) => {
         .catch(error => console.error(error))
     }
 
-    //should probably move this to modal component
-    const [isModalVisible, setIsModalVisible] = useState(false);
 
     const openModal = () => {
-        setIsModalVisible(true);
+        setIsCommentsModalVisible(true);
     }
 
     const closeModal = () => {
-        setIsModalVisible(false);
+        setIsCommentsModalVisible(false);
     }
 
 
@@ -78,7 +79,7 @@ const Card = ({cardData, boardId, handleDeleteCard, handlePinChange}) => {
             <button onClick={handleDelete}>Delete</button>
             <button onClick={openModal}>Comments</button>
         </div>
-        {isModalVisible && <ModalCardComment closeModal={closeModal} card={cardData} boardId={boardId}/>}
+        {isCommentsModalVisible && <ModalCardComment closeModal={closeModal} card={cardData} boardId={boardId}/>}
     </div>
 }
 

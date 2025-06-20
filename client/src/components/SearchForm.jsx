@@ -1,5 +1,10 @@
+import { useState } from 'react';
+
 import "../styles/SearchForm.css"
-const SearchForm = ({searchRequest, onSearchChange, onSubmitSearch}) => {
+const SearchForm = ({onSubmitSearch}) => {
+
+    //for board searching
+    const [searchRequest, setSearchRequest] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -7,14 +12,11 @@ const SearchForm = ({searchRequest, onSearchChange, onSubmitSearch}) => {
         if (submitEvent === "search") {
             const formData = new FormData(event.target);
             const newSearchQuery = formData.get('board-name');
-            //include???
-            // if (newSearchQuery == '') {
-            //     setSearchNotif("It seems you haven't searched for anything!");
-            // } else {
 
             //callback in App.jsx that will trigger a search with the query
             onSubmitSearch(newSearchQuery);
         } else if (submitEvent === "clear") {
+            setSearchRequest(''); 
             onSubmitSearch('');
             event.target.reset();
         }
@@ -22,9 +24,8 @@ const SearchForm = ({searchRequest, onSearchChange, onSubmitSearch}) => {
 
     //called when text is changed as user is typing
     const handleSearchChange = (event) => {
-        //call onSearchChange in App.jsx that will alter the searchRequest state variable while it changes
-            //this is necessary to keep the form as a controlled component
-        onSearchChange(event.target.value); 
+        //this is necessary to keep the form as a controlled component
+        setSearchRequest(event.target.value); 
     }
 
     return (<form className="search-form" onSubmit={handleSubmit}>

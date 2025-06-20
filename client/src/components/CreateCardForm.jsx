@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ModalCardPage from "./ModalCardPage";
 import "../styles/CreateForm.css"
 
+//renders create button and modal for input when activated
 const CreateCardForm = ({ boardId, appendNewCard }) => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);

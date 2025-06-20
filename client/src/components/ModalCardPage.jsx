@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import "../styles/ModalCardPage.css"
 import "../styles/Modal.css"
 
+//for modal that pops up when you create a new card
 const ModalCardPage = ({ boardId, closeModal, appendNewCard }) => {
 
-    const [gifQuery, setGifQuery] = useState('');
-    const [gifUrls, setGifUrls] = useState([]);
-    const [selectedGifUrl, setSelectedGifUrl] = useState(null);
+    const [gifQuery, setGifQuery] = useState(''); //user search input for gifs
+    const [gifUrls, setGifUrls] = useState([]); //resulting gif url options
+    const [selectedGifUrl, setSelectedGifUrl] = useState(null); //chosen gif url
 
     const postCard = (newCardTitle, newCardMessage, newCardGifUrl, newCardAuthor) => {
         fetch(`http://localhost:3000/boards/${boardId}/cards`, {
@@ -23,9 +24,9 @@ const ModalCardPage = ({ boardId, closeModal, appendNewCard }) => {
 				"isPinned": false
             }),
         })
-        .then(async(response) => { //QUESTION:is putting async like this ok?
+        .then(async(response) => { 
             if (!response.ok) {
-                throw new Error ('Failed to create board')
+                throw new Error ('Failed to create card')
             } else {
                 const newCard = await response.json();
                 appendNewCard(newCard);
@@ -35,6 +36,7 @@ const ModalCardPage = ({ boardId, closeModal, appendNewCard }) => {
 
     }
 
+    //submission of entire form
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -52,6 +54,7 @@ const ModalCardPage = ({ boardId, closeModal, appendNewCard }) => {
         
     }
 
+    //use giphy api to search for gif based on user input
     const handleGifSearch = async (event) => {
         event.preventDefault();
         fetch(`https://api.giphy.com/v1/gifs/search?api_key=${import.meta.env.VITE_API_KEY}&q=${gifQuery}&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips`)
@@ -64,14 +67,13 @@ const ModalCardPage = ({ boardId, closeModal, appendNewCard }) => {
                 gifObj.data.forEach((gif) => {
                     tempUrlArr.push(gif.images.original.url);
                 })
-                setGifUrls(tempUrlArr);
+                setGifUrls(tempUrlArr); //set list of all gif url liks so that gif options based on the user's query can be displayed
             }
         })
     }
 
     const handleGifSelect = (url) => {
         setSelectedGifUrl(url);
-
     }
 
     return <div className="modal-overlay"> 
@@ -81,22 +83,23 @@ const ModalCardPage = ({ boardId, closeModal, appendNewCard }) => {
                 <form onSubmit={handleSubmit}>
                     <input placeholder="Title..." type="text" id="title-input" name="title" /><br />
 
-                    <input required placeholder="Message..." type="text" id="message" name="message" /><br />
+                    <input required placeholder="Message (required)..." type="text" id="message" name="message" /><br />
 
                     <div>
-                        <input required placeholder="Search for gifs..." type="text" id="gif-search" name="gif-search" value={gifQuery} onChange={(event) => {setGifQuery(event.target.value)}}/>
+                        <input required placeholder="Search for gifs (required)..." type="text" id="gif-search" name="gif-search" value={gifQuery} onChange={(event) => {setGifQuery(event.target.value)}}/>
                         <button type="button" onClick={handleGifSearch}>Search</button>
                     </div>
 
                     <div className="gif-results-div">
-                        {gifUrls.map((url, index) => 
-                            <img key={index} className="gif-img" onClick={() => {handleGifSelect(url)}} src={url}/>
-                        )}
+                        <Suspense fallback={<p>Loading...</p>}>
+                            {gifUrls.map((url, index) => 
+                                <img key={index} className="gif-img" onClick={() => {handleGifSelect(url)}} src={url}/>
+                            )}
+                        </Suspense>
                     </div>
 
                     <p>Selected Gif:</p>
                     <img className="gif-img" src={selectedGifUrl}/><br />
-                    {/* <input required placeholder="Selected gif url..." type="text" id="gif-url" name="gif-url" value={selectedGifUrl}/><br /> */}
 
                     <input placeholder="Author..." type="text" id="author-input" name="author" /><br />
 

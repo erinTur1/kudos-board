@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Comment from "./Comment"
 import "../styles/ModalCardComment.css"
 import "../styles/Modal.css"
 
+//for modal that pops up to see comments for a card and input for new comment
 const ModalCardComment = ({ closeModal, card, boardId }) => {
 
     const [comments, setComments] = useState([]);
@@ -62,8 +63,8 @@ const ModalCardComment = ({ closeModal, card, boardId }) => {
                 <button className="close-btn" onClick={closeModal}>X</button>
                 <section className="top-half">
                     <form onSubmit={handleSubmit}>
-                        <textarea required placeholder="Enter your comment here..." type="text" id="content-input" name="content"></textarea><br />
-                        <label htmlFor="author-input">Author:</label><br />
+                        <textarea required placeholder="Enter your comment here (required)..." type="text" id="content-input" name="content"></textarea><br />
+                        <label htmlFor="author-input">Author (optional):</label><br />
                         <input type="text" id="author-input" name="author"></input><br />
                         <input type="submit" value="Post"></input>
                     </form>
@@ -76,14 +77,15 @@ const ModalCardComment = ({ closeModal, card, boardId }) => {
                 </section>
                 <section className="comment-section">
                     <p>Comments:</p>
-                    {comments?.map((comment) => {
-                        return <Comment 
-                            key={comment.id}
-                            content={comment.content}
-                            author={comment.author}
-                        />
-                    })}
-
+                    <Suspense fallback={<p>Loading...</p>}>
+                        {comments.map((comment) => {
+                            return <Comment 
+                                key={comment.id}
+                                content={comment.content}
+                                author={comment.author}
+                            />
+                        })}
+                    </Suspense>
                 </section>
             </div>
         </div>
