@@ -5,7 +5,7 @@ import "../styles/Modal.css"
 const ModalBoardPage = ({ closeModal, appendNewBoard }) => {
 
     const postBoard = (newBoardTitle, newBoardCategory, newBoardAuthor) => {
-        fetch("http://localhost:3000/boards", {
+        fetch(`${import.meta.env.VITE_DEPLOYED_URL}/boards`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

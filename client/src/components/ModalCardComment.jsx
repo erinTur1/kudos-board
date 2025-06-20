@@ -13,7 +13,7 @@ const ModalCardComment = ({ closeModal, card, boardId }) => {
     }, []);
 
     const fetchComments = () => {
-        fetch(`http://localhost:3000/boards/${boardId}/cards/${card.id}/comments`)
+        fetch(`${import.meta.env.VITE_DEPLOYED_URL}/boards/${boardId}/cards/${card.id}/comments`)
             .then(response => response.json())
             .then(data => setComments(data))
             .catch(error => console.error('Error fetching comments:', error))
@@ -33,7 +33,7 @@ const ModalCardComment = ({ closeModal, card, boardId }) => {
     }
 
     const postComment = (newCommentContent, newCommentAuthor) => {
-        fetch(`http://localhost:3000/boards/${boardId}/cards/${card.id}/comments`, {
+        fetch(`${import.meta.env.VITE_DEPLOYED_URL}/boards/${boardId}/cards/${card.id}/comments`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

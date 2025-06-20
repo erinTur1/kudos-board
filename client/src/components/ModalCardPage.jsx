@@ -11,7 +11,7 @@ const ModalCardPage = ({ boardId, closeModal, appendNewCard }) => {
     const [gifsResultNotif, setGifsResultNotif] = useState('Gif results will show up here!');
 
     const postCard = (newCardTitle, newCardMessage, newCardGifUrl, newCardAuthor) => {
-        fetch(`http://localhost:3000/boards/${boardId}/cards`, {
+        fetch(`${import.meta.env.VITE_DEPLOYED_URL}/boards/${boardId}/cards`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

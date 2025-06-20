@@ -19,7 +19,7 @@ const Card = ({cardData, boardId, handleDeleteCard, handlePinChange}) => {
 
     const handleUpVote = () => {
         //put request to increase num upvotes by 1
-        fetch(`http://localhost:3000/boards/${boardId}/cards/${cardData.id}/upvote`, {
+        fetch(`${import.meta.env.VITE_DEPLOYED_URL}/boards/${boardId}/cards/${cardData.id}/upvote`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const Card = ({cardData, boardId, handleDeleteCard, handlePinChange}) => {
 
     const handlePin = () => {
         //put request to change pin status
-        fetch(`http://localhost:3000/boards/${boardId}/cards/${cardData.id}/pin`, {
+        fetch(`${import.meta.env.VITE_DEPLOYED_URL}/boards/${boardId}/cards/${cardData.id}/pin`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
