@@ -207,7 +207,6 @@ app.put('/boards/:boardId/cards/:cardId/pin', async (req, res) => {
 
 //delete card by id
 app.delete('/boards/:boardId/cards/:cardId', async (req, res) => {
-    const boardId = parseInt(req.params.boardId);
     const cardId = parseInt(req.params.cardId);
 
     try {
@@ -230,6 +229,43 @@ app.delete('/boards/:boardId/cards/:cardId', async (req, res) => {
         res.status(500).send('Could not delete card');
     }
 })
+
+//get comments by cardId
+app.get('/boards/:boardId/cards/:cardId/comments', async (req, res) => {
+    const cardId = parseInt(req.params.cardId);
+    try {
+        const comments = await prisma.comment.findMany({
+            where: {
+                cardId: cardId,
+            }
+        });
+        res.status(200).json(comments);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Could not get comments');
+    }
+})
+
+//post comment by cardId
+app.post('/boards/:boardId/cards/:cardId/comments', async (req, res) => {
+    const { content, author } = req.body;
+    const cardId = parseInt(req.params.cardId);
+
+    try {
+        const newComment = await prisma.comment.create({
+            data: {
+                content,
+                cardId,
+                author
+            }
+        });
+        res.status(201).json(newComment);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Could not create comment');
+    }
+});
 
 
 

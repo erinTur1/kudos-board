@@ -16,6 +16,7 @@
     min-width: 60%;
     max-height: 80%;
     margin-bottom: 20px;
+    margin-top: 20px;
     overflow: scroll;
     /*Below is to center the modal relative to the browser window*/
     position: fixed;

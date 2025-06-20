@@ -19,8 +19,6 @@ const CardsPage = () => {
         fetchCards();
     }, []);
 
-    //QUESTION: should I not fetch cards and board data again and just use it from state?
-
     const fetchCards = () => {
         fetch(`http://localhost:3000/boards/${boardIdParam}/cards`)
             .then(response => response.json())

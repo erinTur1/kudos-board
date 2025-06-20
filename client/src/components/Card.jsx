@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import { FaThumbtackSlash } from "react-icons/fa6";
 import { FaThumbtack } from "react-icons/fa6";
+import ModalCardComment from './ModalCardComment';
 import "../styles/Card.css";
 
-const Card = ({cardData, boardId, handleDeleteCard, handlePinChange, indexInCards}) => {
+const Card = ({cardData, boardId, handleDeleteCard, handlePinChange}) => {
 
     const [numUpVotes, setNumUpVotes] = useState(cardData.numVotes);
     const [isPinned, setIsPinned] = useState(cardData.isPinned);
 
-    //QUESTION: should I have a state variable here with number of updates and only when the user exits the page, it does a fetch call and 
-    //updates the total num of upvotes. - or should i just do a fetch call for each upvote
 
     const handleDelete = () => {
         handleDeleteCard(cardData.id);
@@ -55,8 +54,17 @@ const Card = ({cardData, boardId, handleDeleteCard, handlePinChange, indexInCard
             }
         })
         .catch(error => console.error(error))
+    }
 
-        
+    //should probably move this to modal component
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const openModal = () => {
+        setIsModalVisible(true);
+    }
+
+    const closeModal = () => {
+        setIsModalVisible(false);
     }
 
 
@@ -68,7 +76,9 @@ const Card = ({cardData, boardId, handleDeleteCard, handlePinChange, indexInCard
         <div>
             <button onClick={handleUpVote}>Upvote: {numUpVotes}</button>
             <button onClick={handleDelete}>Delete</button>
+            <button onClick={openModal}>Comments</button>
         </div>
+        {isModalVisible && <ModalCardComment closeModal={closeModal} card={cardData} boardId={boardId}/>}
     </div>
 }
 
