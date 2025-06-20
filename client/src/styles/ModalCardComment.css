@@ -1,0 +1,19 @@
+.top-half {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.top-half textarea {
+    min-height: 200px;
+    min-width: 200px;
+}
+
+.card-info * {
+    margin: 5px;
+}
+
+.card-info img {
+    max-height: 150px;
+    max-width: 150px;
+}

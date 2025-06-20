@@ -35,4 +35,13 @@ model Card {
   isPinned Boolean
   pinOrder Int @default(-1)
   author String
+  comments Comment[]
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+  cardId Int
+  card Card @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  content String
+  author String
 }

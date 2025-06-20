@@ -3,19 +3,10 @@ import "../styles/CardList.css"
 
 const CardList = ({ cards, boardId, deleteCardById, cardRefetch }) => {
 
-    // const deleteCard = (id) => {
-    //     deleteCardById(id)
-    // }
-
-    // const handlePinClick = () => {
-    //     moveCard();
-    // }
-
-
     return <section className="card-list-container">
         {
             
-            cards?.map((card, index) => {
+            cards?.map((card) => {
                 return <Card 
                 key={card.id}
                 cardData={card}
@@ -24,7 +15,6 @@ const CardList = ({ cards, boardId, deleteCardById, cardRefetch }) => {
                     deleteCardById(id);
                 }}
                 handlePinChange={cardRefetch}
-                indexInCards={index}
                 />
             })
         }
