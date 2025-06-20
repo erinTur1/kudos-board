@@ -19,14 +19,14 @@ const CardsPage = () => {
 
     //get cards based on board id
     const fetchCards = () => {
-        fetch(`http://localhost:3000/boards/${boardIdParam}/cards`)
+        fetch(`${import.meta.env.VITE_DEPLOYED_URL}/boards/${boardIdParam}/cards`)
             .then(response => response.json())
             .then(data => setCards(data))
             .catch(error => console.error('Error fetching boards:', error))
     };
     
     const deleteCardById = (cardId) => {
-        fetch(`http://localhost:3000/boards/${boardIdParam}/cards/${cardId}`, {
+        fetch(`${import.meta.env.VITE_DEPLOYED_URL}/boards/${boardIdParam}/cards/${cardId}`, {
             method: 'DELETE',
         })
         .then((response) => {

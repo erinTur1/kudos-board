@@ -23,7 +23,7 @@ const HomePage = () => {
     }, []);
 
     const fetchBoards = () => {
-        fetch('http://localhost:3000/boards')
+        fetch(`${import.meta.env.VITE_DEPLOYED_URL}/boards`)
             .then(response => response.json())
             .then(data => {
                 setBoards(data);
@@ -33,7 +33,7 @@ const HomePage = () => {
     };
 
     const deleteBoardById = (boardId) => {
-        fetch(`http://localhost:3000/boards/${boardId}`, {
+        fetch(`${import.meta.env.VITE_DEPLOYED_URL}/boards/${boardId}`, {
             method: 'DELETE',
         })
         .then((response) => {
