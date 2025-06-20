@@ -1,10 +1,9 @@
 footer {
-    background-color: #537D5D;
     position: fixed;
     display: block;
     bottom: 0;
     height: 6%;
     width: 100%;
-    color: white;
     font-size: 150%;
+    box-shadow: 0px -10px 10px rgb(114, 112, 112);
 }

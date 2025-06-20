@@ -7,6 +7,14 @@
 .top-half textarea {
     min-height: 200px;
     min-width: 200px;
+    box-shadow: 0px 5px 10px rgb(114, 112, 112);
+    border: solid rgb(114, 112, 112);
+}
+
+.top-half input {
+    box-shadow: 0px 5px 10px rgb(114, 112, 112);
+    border: solid rgb(114, 112, 112);
+    margin-bottom: 8px;
 }
 
 .card-info * {

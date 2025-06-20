@@ -1,10 +1,10 @@
 .board {
-    background-color: #9EBC8A;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 12%;
     padding: 1%;
+    box-shadow: 0px 10px 20px rgb(114, 112, 112);
 }
 
 .board h2, p {
@@ -17,8 +17,4 @@
 .board button {
     padding: 7px;
     margin-right: 4px;
-}
-
-.board button:hover {
-    padding: 10px;
 }

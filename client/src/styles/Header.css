@@ -5,8 +5,7 @@ header {
     flex-direction: row;
     justify-content: center;
     align-items:center;
-    background-color: #537D5D;
-    color: white;
+    box-shadow: 0px 10px 10px rgb(114, 112, 112);  
 }
 
 .back-arrow {

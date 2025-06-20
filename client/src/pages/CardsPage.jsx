@@ -4,6 +4,9 @@ import Header from "../components/Header";
 import CardList from "../components/CardList";
 import Footer from "../components/Footer";
 import CreateCardForm from "../components/CreateCardForm";
+import LightDarkToggle from "../components/LightDarkToggle";
+
+
 
 const CardsPage = () => {
 
@@ -47,23 +50,6 @@ const CardsPage = () => {
         setCards([...cards, newCard]);
     }
 
-    // const moveCard = (isPinned, ind) => {
-    //     if(isPinned) { //need to move it to the top
-    //         //swap the now pinned card with the first card in the cards array
-    //         let tempCards = cards;
-    //         let temp = tempCards[ind];
-    //         tempCards[ind] = tempCards[0];
-    //         tempCards[0] = temp;
-    //         setCards[tempCards];
-    //     } else { //need to move it to the end
-    //         let tempCards = cards;
-    //         let temp = tempCards[ind];
-    //         tempCards[ind] = tempCards[cards.length - 1];
-    //         tempCards[cards.length - 1] = temp;
-    //         setCards[tempCards];
-    //     }
-    // }
-
     const cardRefetch = () => {
         fetchCards();
     }
@@ -71,6 +57,7 @@ const CardsPage = () => {
     return (
         <div id="cards-page">
             <Header isBackArrowActive={true}/>
+            {/* <LightDarkToggle /> */}
             <h1>{location.state.boardName}</h1>
             <CreateCardForm boardId={boardIdParam} appendNewCard={appendNewCard}/>
             <CardList 

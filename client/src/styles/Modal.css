@@ -16,7 +16,7 @@
     min-width: 60%;
     max-height: 80%;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 50px;
     overflow: scroll;
     /*Below is to center the modal relative to the browser window*/
     position: fixed;
@@ -31,7 +31,7 @@
 }
 
 .modal-content {
-    background-color: #537D5D;
+    background-color: var(--body-background);
     max-width: 70%;
     border-style: outset;
     border-width: 7px;
@@ -42,6 +42,5 @@
 .modal-content .close-btn {
     position: fixed;
     left: 67%;
-    top: 5%;
-      
+    top: 5%;     
 }

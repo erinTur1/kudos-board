@@ -8,11 +8,11 @@ const FilterOptions = ({ filterBoards }) => {
 
     return (
         <div className="filter-buttons">
-            <button value={FilterType.ALL} onClick={handleFilterClick}>All</button>
-            <button value={FilterType.RECENT} onClick={handleFilterClick}>Recent</button>
-            <button value={FilterType.CELEBRATION} onClick={handleFilterClick}>Celebration</button>
-            <button value={FilterType.THANK_YOU} onClick={handleFilterClick}>Thank you</button>
-            <button value={FilterType.INSPIRATION} onClick={handleFilterClick}>Inspiration</button>
+            <button className="category-btn" value={FilterType.ALL} onClick={handleFilterClick}>All</button>
+            <button className="category-btn" value={FilterType.RECENT} onClick={handleFilterClick}>Recent</button>
+            <button className="category-btn" value={FilterType.CELEBRATION} onClick={handleFilterClick}>Celebration</button>
+            <button className="category-btn" value={FilterType.THANK_YOU} onClick={handleFilterClick}>Thank you</button>
+            <button className="category-btn" value={FilterType.INSPIRATION} onClick={handleFilterClick}>Inspiration</button>
         </div>
     )
 
