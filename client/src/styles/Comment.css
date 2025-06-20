@@ -1,6 +1,8 @@
 .comment {
-    border: solid black;
+    
     margin-bottom: 5px;
-    background-color: white;
+    background-color: var(--body-background);
     text-align: left;
+    box-shadow: 0px 10px 10px rgb(114, 112, 112);
+    border: solid rgb(114, 112, 112);
 }

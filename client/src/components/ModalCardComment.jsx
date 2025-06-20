@@ -75,6 +75,7 @@ const ModalCardComment = ({ closeModal, card, boardId }) => {
                     </article>  
                 </section>
                 <section className="comment-section">
+                    <p>Comments:</p>
                     {comments?.map((comment) => {
                         return <Comment 
                             key={comment.id}

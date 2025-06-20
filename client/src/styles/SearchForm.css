@@ -10,11 +10,12 @@
 }
 
 input[type="submit"]:hover {
-    background-color: #D2D0A0;
+    background-color: rgb(175, 174, 174);
 }
 
 .search-form #text-input {
     width: 250px; 
     height: 40px;
 }
+
 

@@ -5,6 +5,7 @@ import BoardList from "../components/BoardList";
 import Footer from "../components/Footer";
 import CreateForm from "../components/CreateForm";
 import FilterOptions from '../components/FilterOptions';
+import LightDarkToggle from "../components/LightDarkToggle";
 import { filterByRecent, filterByCategory, FilterType } from "../utils/utils";
 
 const HomePage = () => {
@@ -79,9 +80,11 @@ const HomePage = () => {
         setBoards(newBoards);
     }
 
+
     return (
         <div id="home-page">
             <Header isBackArrowActive={false}/>
+            {/* <LightDarkToggle /> */}
             <SearchForm 
             searchRequest={searchRequest} 
             onSearchChange={handleSearchChange} 
