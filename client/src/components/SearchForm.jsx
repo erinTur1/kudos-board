@@ -14,10 +14,10 @@ const SearchForm = ({onSubmitSearch}) => {
             const newSearchQuery = formData.get('board-name');
 
             //callback in App.jsx that will trigger a search with the query
-            onSubmitSearch(newSearchQuery);
+            onSubmitSearch(newSearchQuery, true);
         } else if (submitEvent === "clear") {
             setSearchRequest(''); 
-            onSubmitSearch('');
+            onSubmitSearch('', false);
             event.target.reset();
         }
     }

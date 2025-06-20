@@ -3,7 +3,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     max-height: 20%;
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 .gif-img {
