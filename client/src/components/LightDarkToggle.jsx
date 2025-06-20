@@ -10,14 +10,15 @@ const LightDarkToggle = () => {
 
     return (
     <label className="toggle-switch">
-        <button className={isLight? "activated": "btn"} onClick={() => {
-            setIsLight(true);
-            document.documentElement.setAttribute('mode', 'light-mode')
-        }}>☀️</button>
-        <button className={!isLight? "activated": "btn"} onClick={() => {
-            setIsLight(false);
-            document.documentElement.setAttribute('mode', 'dark-mode')
-        }}>🌙</button>
+        <button onClick={() => {
+            if (!isLight) {
+                setIsLight(true);
+                document.documentElement.setAttribute('mode', 'light-mode')
+            } else {
+                setIsLight(false);
+                document.documentElement.setAttribute('mode', 'dark-mode')
+            }
+        }}>{isLight? "☀️": "🌙"}</button>
     </label>)
 
 }
