@@ -9,6 +9,11 @@
     margin-right: 5px;
 }
 
+input::placeholder {
+    color: black;
+    opacity: 1;
+}
+
 input[type="submit"]:hover {
     background-color: rgb(175, 174, 174);
 }

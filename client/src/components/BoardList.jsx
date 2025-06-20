@@ -1,23 +1,23 @@
-import { useState, useEffect } from 'react';
+import { Suspense } from 'react';
 import Board from "./Board";
 import "../styles/BoardList.css"
 
 const BoardList = ({ boards, deleteBoardById }) => {
 
-    const deleteBoard = (id) => {
-        deleteBoardById(id);
-    };
-
     return <section className="board-list-container">
-        {
-            boards.map((board) => {
-                return <Board 
-                key={board.id}
-                boardData={board}
-                handleDeleteBoard={deleteBoard}
-                />
-            })
-        }
+        <Suspense fallback={<p>Loading...</p>}>
+            {
+                boards.map((board) => {
+                    return <Board 
+                    key={board.id}
+                    boardData={board}
+                    handleDeleteBoard={(id) => {
+                        deleteBoardById(id);
+                    }}
+                    />
+                })
+            }
+        </Suspense>
 
     </section>}
 

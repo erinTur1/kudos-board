@@ -23,7 +23,7 @@ app.get('/boards', async (req, res) => {
     }
 });
 
-//get board by id - remove?
+//get board by id 
 app.get('/boards/:boardId', async (req, res) => {
     const boardId = parseInt(req.params.boardId);
     try {
@@ -179,7 +179,6 @@ app.put('/boards/:boardId/cards/:cardId/pin', async (req, res) => {
 
         let newPinOrder = card.pinOrder
         if (newPinOrder == -1) { //if card is not already pinned
-            // newPinOrder = await prisma.card.findFirst().pinOrder + 1;
             const lastPinnedCard = await prisma.card.findFirst({
                 orderBy: { pinOrder: 'desc'}
             });

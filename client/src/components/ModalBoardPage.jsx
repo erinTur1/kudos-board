@@ -1,10 +1,10 @@
 import { FilterType } from "../utils/utils"
 import "../styles/Modal.css"
 
-const Modal = ({ closeModal, appendNewBoard }) => {
+//for modal that pops up when you create a new board
+const ModalBoardPage = ({ closeModal, appendNewBoard }) => {
 
     const postBoard = (newBoardTitle, newBoardCategory, newBoardAuthor) => {
-        //works!!!
         fetch("http://localhost:3000/boards", {
             method: 'POST',
             headers: {
@@ -15,7 +15,6 @@ const Modal = ({ closeModal, appendNewBoard }) => {
                 "category": newBoardCategory,
                 "author": newBoardAuthor,
                 "image_url": `https://picsum.photos/200/300?random=${Math.floor(Math.random() * 1000 + 1)}`
-                // "time_created": Date.now(),
             }),
         })
         .then(async(response) => { 
@@ -23,7 +22,7 @@ const Modal = ({ closeModal, appendNewBoard }) => {
                 throw new Error ('Failed to create board')
             } else {
                 const newBoard = await response.json();
-                appendNewBoard(newBoard);
+                appendNewBoard(newBoard); //call back to HomePage so that the new board can be rendered visually right away
             }
         })
         .catch(error => console.error(error))
@@ -47,16 +46,16 @@ const Modal = ({ closeModal, appendNewBoard }) => {
             <div className="modal-content">
                 <button className="close-btn" onClick={closeModal}>X</button>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="titleInput">Title:</label><br />
+                    <label htmlFor="titleInput">Title (required):</label><br />
                     <input required type="text" id="title-input" name="title"></input><br />
-                    <label htmlFor="category">Category:</label><br />
+                    <label htmlFor="category">Category (required):</label><br />
                     <select required id="category" name="category" defaultValue="">
                         <option disabled value={FilterType.NONE}>Select a category</option>
                         <option value={FilterType.CELEBRATION}>Celebration</option>
                         <option value={FilterType.THANK_YOU}>Thank you</option>
                         <option value={FilterType.INSPIRATION}>Inspiration</option>
                     </select><br />
-                    <label htmlFor="author-input">Author:</label><br />
+                    <label htmlFor="author-input">Author (optional):</label><br />
                     <input type="text" id="author-input" name="author"></input><br />
                     <input type="submit" value="Submit"></input>
                 </form>
@@ -65,4 +64,4 @@ const Modal = ({ closeModal, appendNewBoard }) => {
     </div>
 }
 
-export default Modal
+export default ModalBoardPage
