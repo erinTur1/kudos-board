@@ -12,7 +12,8 @@ const Board = ({boardData, handleDeleteBoard}) => {
         <h2>{boardData.title}</h2>
         <p>{boardData.description}</p>
         <div>
-            <button onClick={() => {
+            <button onClick={(event) => {
+                event.stopPropagation();
                 handleDeleteBoard(boardData.id) //callback to HomePage so that deleted board can be rendered visually 
             }}>Delete Board</button>
         </div>
