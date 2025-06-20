@@ -1,9 +1,6 @@
 .toggle-switch button {
     height: 40px;
     width: 40px;
-}
-
-.activated {
     background-color: blue;
 }
 

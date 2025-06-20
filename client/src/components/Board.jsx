@@ -17,6 +17,7 @@ const Board = ({boardData, handleDeleteBoard}) => {
                 handleDeleteBoard(boardData.id) //callback to HomePage so that deleted board can be rendered visually 
             }}>Delete Board</button>
         </div>
+        {boardData.author != "" && <p>Author: {boardData.author}</p>}
     </div>
 }
 

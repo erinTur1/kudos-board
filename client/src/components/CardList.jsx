@@ -5,7 +5,7 @@ import "../styles/CardList.css"
 const CardList = ({ cards, boardId, deleteCardById, cardRefetch }) => {
 
     return <section className="card-list-container">
-        {cards.length == 0? <p>Your cards will load here!</p> :
+        {cards.length == 0? <p>Your cards will display here!</p> :
 
         <Suspense fallback={<p>Loading...</p>}>
             {

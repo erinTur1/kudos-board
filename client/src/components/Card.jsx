@@ -79,6 +79,7 @@ const Card = ({cardData, boardId, handleDeleteCard, handlePinChange}) => {
             <button onClick={handleDelete}>Delete</button>
             <button onClick={openModal}>Comments</button>
         </div>
+        {cardData.author != "" && <p>Author: {cardData.author}</p>}
         {isCommentsModalVisible && <ModalCardComment closeModal={closeModal} card={cardData} boardId={boardId}/>}
     </div>
 }
