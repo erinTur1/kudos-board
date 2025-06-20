@@ -2,9 +2,10 @@ import { Suspense } from 'react';
 import Board from "./Board";
 import "../styles/BoardList.css"
 
-const BoardList = ({ boards, deleteBoardById }) => {
+const BoardList = ({ boards, deleteBoardById, errorNotif }) => {
 
     return <section className="board-list-container">
+        { boards.length == 0? <p>{errorNotif}</p>:
         <Suspense fallback={<p>Loading...</p>}>
             {
                 boards.map((board) => {
@@ -18,7 +19,7 @@ const BoardList = ({ boards, deleteBoardById }) => {
                 })
             }
         </Suspense>
-
+        }
     </section>}
 
 export default BoardList;

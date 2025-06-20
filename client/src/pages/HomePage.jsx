@@ -15,6 +15,7 @@ const HomePage = () => {
 
     //boards state var - what is displayed to the user
     const [boards, setBoards] = useState([]);
+    const [homePageNotif, setHomePageNotif] = useState("Boards show up here!");
 
     useEffect(() => {
         fetchBoards();
@@ -41,6 +42,7 @@ const HomePage = () => {
             } else {
                 setBoards(boards.filter(board => board.id !== parseInt(boardId)));
                 defaultBoards.current = boards.filter(board => board.id !== parseInt(boardId));
+                if (defaultBoards.current.length == 0) setHomePageNotif("Boards show up here!");
             }
         })
         .catch(error => console.error(error))
@@ -67,7 +69,9 @@ const HomePage = () => {
     }
 
     //called when user actually searches 
-    const handleSearchSubmit = (newSearchRequest) => {
+    const handleSearchSubmit = (newSearchRequest, isASearch) => {
+        isASearch? setHomePageNotif("No results found"): setHomePageNotif("");
+        
         const newBoards = defaultBoards.current.filter(board => 
             board.title.includes(newSearchRequest)
         );
@@ -81,7 +85,7 @@ const HomePage = () => {
             <SearchForm onSubmitSearch={handleSearchSubmit}/>
             <FilterOptions filterBoards={filterBoards}/>
             <CreateBoardForm appendNewBoard={appendNewBoard}/>
-            <BoardList boards={boards} deleteBoardById={deleteBoardById}/>
+            <BoardList boards={boards} deleteBoardById={deleteBoardById} errorNotif={homePageNotif}/>
             <Footer />
         </div>
     );

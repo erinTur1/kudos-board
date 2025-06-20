@@ -3,7 +3,10 @@ import Card from "./Card.jsx";
 import "../styles/CardList.css"
 
 const CardList = ({ cards, boardId, deleteCardById, cardRefetch }) => {
+
     return <section className="card-list-container">
+        {cards.length == 0? <p>Your cards will load here!</p> :
+
         <Suspense fallback={<p>Loading...</p>}>
             {
                 cards.map((card) => {
@@ -19,6 +22,7 @@ const CardList = ({ cards, boardId, deleteCardById, cardRefetch }) => {
                 })
             }
         </Suspense>
+        }
     </section>
 }
 

@@ -8,6 +8,7 @@ const ModalCardPage = ({ boardId, closeModal, appendNewCard }) => {
     const [gifQuery, setGifQuery] = useState(''); //user search input for gifs
     const [gifUrls, setGifUrls] = useState([]); //resulting gif url options
     const [selectedGifUrl, setSelectedGifUrl] = useState(null); //chosen gif url
+    const [gifsResultNotif, setGifsResultNotif] = useState('Gif results will show up here!');
 
     const postCard = (newCardTitle, newCardMessage, newCardGifUrl, newCardAuthor) => {
         fetch(`http://localhost:3000/boards/${boardId}/cards`, {
@@ -67,6 +68,9 @@ const ModalCardPage = ({ boardId, closeModal, appendNewCard }) => {
                 gifObj.data.forEach((gif) => {
                     tempUrlArr.push(gif.images.original.url);
                 })
+                if (tempUrlArr.length == 0) {
+                    setGifsResultNotif('No gifs found!');
+                }
                 setGifUrls(tempUrlArr); //set list of all gif url liks so that gif options based on the user's query can be displayed
             }
         })
@@ -79,23 +83,25 @@ const ModalCardPage = ({ boardId, closeModal, appendNewCard }) => {
     return <div className="modal-overlay"> 
         <div className="modal-popup">       
             <div className="modal-content">
-                <button onClick={closeModal}>X</button>
+                <button className="close-btn" onClick={closeModal}>X</button>
                 <form onSubmit={handleSubmit}>
                     <input placeholder="Title..." type="text" id="title-input" name="title" /><br />
 
                     <input required placeholder="Message (required)..." type="text" id="message" name="message" /><br />
 
                     <div>
-                        <input required placeholder="Search for gifs (required)..." type="text" id="gif-search" name="gif-search" value={gifQuery} onChange={(event) => {setGifQuery(event.target.value)}}/>
+                        <input required placeholder="Search gifs (required)..." type="text" id="gif-search" name="gif-search" value={gifQuery} onChange={(event) => {setGifQuery(event.target.value)}}/>
                         <button type="button" onClick={handleGifSearch}>Search</button>
                     </div>
 
                     <div className="gif-results-div">
-                        <Suspense fallback={<p>Loading...</p>}>
+                        {gifUrls.length == 0? <p>{gifsResultNotif}</p> 
+                        :<Suspense fallback={<p>Loading...</p>}>
                             {gifUrls.map((url, index) => 
                                 <img key={index} className="gif-img" onClick={() => {handleGifSelect(url)}} src={url}/>
                             )}
-                        </Suspense>
+                        </Suspense> }
+                        
                     </div>
 
                     <p>Selected Gif:</p>
